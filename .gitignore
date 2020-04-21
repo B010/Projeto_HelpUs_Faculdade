@@ -1,0 +1,64 @@
+﻿# Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
+[Bb]in
+[Oo]bj
+[Ll]ogs
+[Aa]rquivos
+[Pp]ackages
+[Pp]ublish[Pp]rofiles
+[Ll]ocal[Ss]earch[Ii]ndex
+[Cc]ontrol[Ss]hop2.sln.ide
+
+
+
+
+# Pasta de pacotes do bower
+**/components/bower/
+src/ControlShop.Web/wwwroot/js/
+src/ControlShop.Web/wwwroot/css/
+
+# pastas temporarias do jsreport
+src/ControlShop.Reports/temp/
+src/ControlShop.Reports/jsreport/
+
+# pastas de módulos do node.js
+**/node_modules/
+
+_[Ss]cripts
+*[Uu]pgrade[Rr]eport*
+*[Rr]esharper*
+
+*.[Bb]ackup
+*.[Cc]ache
+*.[Bb]ackup.*
+
+
+*.suo
+*.user
+*.vssscc
+*.vspscc
+*.sdf
+*.vsmdi
+*.log
+*.[Pp]ublish.xml
+[Uu]pgrade[Ll]og.*
+
+
+*.exe
+*.dll
+*.nupkg
+*.ncrunchsolution
+*.dot[Cc]over
+*.vsp
+*.psess
+*.orig
+*.vsp
+*.vspx
+
+
+# mstest test results
+[Tt]est[Rr]esults
+testimpactdata.sdf
+
+.DS_Store
+.vs
+.vscode

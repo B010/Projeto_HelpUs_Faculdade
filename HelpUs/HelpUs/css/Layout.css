@@ -3,11 +3,18 @@
 @media(min-width:768px) {
     body {
         margin-top: 50px;
-        padding-top: 0
+        padding-top: 0;
+        padding-bottom: 0;
     }
     /*html, body, #wrapper, #page-wrapper {height: 100%; overflow: hidden;}*/
 }
 
+html,
+body,
+#wrapper,
+#page-wrapper {
+    height: 100%;
+}
 #wrapper {
     padding-left: 0;
 }
