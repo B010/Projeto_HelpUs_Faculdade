@@ -1,0 +1,566 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HelpUsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Casos">
+          <Key>
+            <PropertyRef Name="IdCaso" />
+          </Key>
+          <Property Name="IdCaso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCategoria" Type="int" />
+          <Property Name="IdEmpresa" Type="int" />
+          <Property Name="IdOutraEmpresa" Type="int" />
+          <Property Name="QuantidadeTotal" Type="int" />
+          <Property Name="Quantidade" Type="int" />
+          <Property Name="ValorTotal" Type="decimal" Precision="19" Scale="2" />
+          <Property Name="Valor" Type="decimal" Precision="19" Scale="2" />
+          <Property Name="TituloCaso" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="DescricaoCaso" Type="varchar" MaxLength="50" />
+          <Property Name="Ativo" Type="bit" Nullable="false" />
+          <Property Name="Avaliacao" Type="bit" />
+        </EntityType>
+        <EntityType Name="Categorias">
+          <Key>
+            <PropertyRef Name="IdCategoria" />
+          </Key>
+          <Property Name="IdCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomeCategoria" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="TipoCategoria" Type="int" Nullable="false" />
+          <Property Name="ativo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Empresas">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+          </Key>
+          <Property Name="IdEmpresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomeEmpresa" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="EmailEmpresa" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="Cnpj" Type="varchar" MaxLength="17" Nullable="false" />
+          <Property Name="CEP" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="TelefoneEmpresa" Type="int" Nullable="false" />
+          <Property Name="UfEmpresa" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="CidadeEmpresa" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="ativo" Type="bit" Nullable="false" />
+          <Property Name="DataDisativacao" Type="date" />
+        </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="IdLogin" />
+          </Key>
+          <Property Name="IdLogin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdEmpresa" Type="int" />
+          <Property Name="IdOutraEmpresa" Type="int" />
+          <Property Name="Usuario" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Senha" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="TipoUsuario" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OutrasEmpresas">
+          <Key>
+            <PropertyRef Name="IdOutraEmpresa" />
+          </Key>
+          <Property Name="IdOutraEmpresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OutraOutrasEmpresas" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="EmailOutrasEmpresas" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="CEPOutrasEmpresas" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="TelefoneOutrasEmpresas" Type="int" Nullable="false" />
+          <Property Name="UfOutrasEmpresas" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="CidadeOutrasEmpresas" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="ativo" Type="bit" Nullable="false" />
+          <Property Name="DataDisativacao" Type="date" />
+        </EntityType>
+        <EntityType Name="PessoasSolicitantes">
+          <Key>
+            <PropertyRef Name="IdPessoa" />
+          </Key>
+          <Property Name="IdPessoa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdEmpresa" Type="int" />
+          <Property Name="IdOutraEmpresa" Type="int" />
+          <Property Name="NomePessoa" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Setor" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="CPF" Type="varchar" MaxLength="11" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK__Casos__IdCategor__68487DD7">
+          <End Role="Categorias" Type="Self.Categorias" Multiplicity="0..1" />
+          <End Role="Casos" Type="Self.Casos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorias">
+              <PropertyRef Name="IdCategoria" />
+            </Principal>
+            <Dependent Role="Casos">
+              <PropertyRef Name="IdCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Casos__IdEmpresa__693CA210">
+          <End Role="Empresas" Type="Self.Empresas" Multiplicity="0..1" />
+          <End Role="Casos" Type="Self.Casos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresas">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="Casos">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Casos__IdOutraEm__6A30C649">
+          <End Role="OutrasEmpresas" Type="Self.OutrasEmpresas" Multiplicity="0..1" />
+          <End Role="Casos" Type="Self.Casos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OutrasEmpresas">
+              <PropertyRef Name="IdOutraEmpresa" />
+            </Principal>
+            <Dependent Role="Casos">
+              <PropertyRef Name="IdOutraEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Login__IdEmpresa__6D0D32F4">
+          <End Role="Empresas" Type="Self.Empresas" Multiplicity="0..1" />
+          <End Role="Login" Type="Self.Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresas">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="Login">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Login__IdOutraEm__6E01572D">
+          <End Role="OutrasEmpresas" Type="Self.OutrasEmpresas" Multiplicity="0..1" />
+          <End Role="Login" Type="Self.Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OutrasEmpresas">
+              <PropertyRef Name="IdOutraEmpresa" />
+            </Principal>
+            <Dependent Role="Login">
+              <PropertyRef Name="IdOutraEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PessoasSo__IdEmp__619B8048">
+          <End Role="Empresas" Type="Self.Empresas" Multiplicity="0..1" />
+          <End Role="PessoasSolicitantes" Type="Self.PessoasSolicitantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresas">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="PessoasSolicitantes">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PessoasSo__IdOut__628FA481">
+          <End Role="OutrasEmpresas" Type="Self.OutrasEmpresas" Multiplicity="0..1" />
+          <End Role="PessoasSolicitantes" Type="Self.PessoasSolicitantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OutrasEmpresas">
+              <PropertyRef Name="IdOutraEmpresa" />
+            </Principal>
+            <Dependent Role="PessoasSolicitantes">
+              <PropertyRef Name="IdOutraEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HelpUsModelStoreContainer">
+          <EntitySet Name="Casos" EntityType="Self.Casos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categorias" EntityType="Self.Categorias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empresas" EntityType="Self.Empresas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OutrasEmpresas" EntityType="Self.OutrasEmpresas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PessoasSolicitantes" EntityType="Self.PessoasSolicitantes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Casos__IdCategor__68487DD7" Association="Self.FK__Casos__IdCategor__68487DD7">
+            <End Role="Categorias" EntitySet="Categorias" />
+            <End Role="Casos" EntitySet="Casos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Casos__IdEmpresa__693CA210" Association="Self.FK__Casos__IdEmpresa__693CA210">
+            <End Role="Empresas" EntitySet="Empresas" />
+            <End Role="Casos" EntitySet="Casos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Casos__IdOutraEm__6A30C649" Association="Self.FK__Casos__IdOutraEm__6A30C649">
+            <End Role="OutrasEmpresas" EntitySet="OutrasEmpresas" />
+            <End Role="Casos" EntitySet="Casos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Login__IdEmpresa__6D0D32F4" Association="Self.FK__Login__IdEmpresa__6D0D32F4">
+            <End Role="Empresas" EntitySet="Empresas" />
+            <End Role="Login" EntitySet="Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Login__IdOutraEm__6E01572D" Association="Self.FK__Login__IdOutraEm__6E01572D">
+            <End Role="OutrasEmpresas" EntitySet="OutrasEmpresas" />
+            <End Role="Login" EntitySet="Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PessoasSo__IdEmp__619B8048" Association="Self.FK__PessoasSo__IdEmp__619B8048">
+            <End Role="Empresas" EntitySet="Empresas" />
+            <End Role="PessoasSolicitantes" EntitySet="PessoasSolicitantes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PessoasSo__IdOut__628FA481" Association="Self.FK__PessoasSo__IdOut__628FA481">
+            <End Role="OutrasEmpresas" EntitySet="OutrasEmpresas" />
+            <End Role="PessoasSolicitantes" EntitySet="PessoasSolicitantes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HelpUsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Casos">
+          <Key>
+            <PropertyRef Name="IdCaso" />
+          </Key>
+          <Property Name="IdCaso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCategoria" Type="Int32" />
+          <Property Name="IdEmpresa" Type="Int32" />
+          <Property Name="IdOutraEmpresa" Type="Int32" />
+          <Property Name="QuantidadeTotal" Type="Int32" />
+          <Property Name="Quantidade" Type="Int32" />
+          <Property Name="ValorTotal" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="Valor" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="TituloCaso" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DescricaoCaso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
+          <Property Name="Avaliacao" Type="Boolean" />
+          <NavigationProperty Name="Categorias" Relationship="Self.FK__Casos__IdCategor__68487DD7" FromRole="Casos" ToRole="Categorias" />
+          <NavigationProperty Name="Empresas" Relationship="Self.FK__Casos__IdEmpresa__693CA210" FromRole="Casos" ToRole="Empresas" />
+          <NavigationProperty Name="OutrasEmpresas" Relationship="Self.FK__Casos__IdOutraEm__6A30C649" FromRole="Casos" ToRole="OutrasEmpresas" />
+        </EntityType>
+        <EntityType Name="Categorias">
+          <Key>
+            <PropertyRef Name="IdCategoria" />
+          </Key>
+          <Property Name="IdCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomeCategoria" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TipoCategoria" Type="Int32" Nullable="false" />
+          <Property Name="ativo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Casos" Relationship="Self.FK__Casos__IdCategor__68487DD7" FromRole="Categorias" ToRole="Casos" />
+        </EntityType>
+        <EntityType Name="Empresas">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+          </Key>
+          <Property Name="IdEmpresa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomeEmpresa" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmailEmpresa" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cnpj" Type="String" MaxLength="17" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CEP" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TelefoneEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="UfEmpresa" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CidadeEmpresa" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ativo" Type="Boolean" Nullable="false" />
+          <Property Name="DataDisativacao" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Casos" Relationship="Self.FK__Casos__IdEmpresa__693CA210" FromRole="Empresas" ToRole="Casos" />
+          <NavigationProperty Name="Login" Relationship="Self.FK__Login__IdEmpresa__6D0D32F4" FromRole="Empresas" ToRole="Login" />
+          <NavigationProperty Name="PessoasSolicitantes" Relationship="Self.FK__PessoasSo__IdEmp__619B8048" FromRole="Empresas" ToRole="PessoasSolicitantes" />
+        </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="IdLogin" />
+          </Key>
+          <Property Name="IdLogin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdEmpresa" Type="Int32" />
+          <Property Name="IdOutraEmpresa" Type="Int32" />
+          <Property Name="Usuario" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Senha" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TipoUsuario" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Empresas" Relationship="Self.FK__Login__IdEmpresa__6D0D32F4" FromRole="Login" ToRole="Empresas" />
+          <NavigationProperty Name="OutrasEmpresas" Relationship="Self.FK__Login__IdOutraEm__6E01572D" FromRole="Login" ToRole="OutrasEmpresas" />
+        </EntityType>
+        <EntityType Name="OutrasEmpresas">
+          <Key>
+            <PropertyRef Name="IdOutraEmpresa" />
+          </Key>
+          <Property Name="IdOutraEmpresa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OutraOutrasEmpresas" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmailOutrasEmpresas" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CEPOutrasEmpresas" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TelefoneOutrasEmpresas" Type="Int32" Nullable="false" />
+          <Property Name="UfOutrasEmpresas" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CidadeOutrasEmpresas" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ativo" Type="Boolean" Nullable="false" />
+          <Property Name="DataDisativacao" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Casos" Relationship="Self.FK__Casos__IdOutraEm__6A30C649" FromRole="OutrasEmpresas" ToRole="Casos" />
+          <NavigationProperty Name="Login" Relationship="Self.FK__Login__IdOutraEm__6E01572D" FromRole="OutrasEmpresas" ToRole="Login" />
+          <NavigationProperty Name="PessoasSolicitantes" Relationship="Self.FK__PessoasSo__IdOut__628FA481" FromRole="OutrasEmpresas" ToRole="PessoasSolicitantes" />
+        </EntityType>
+        <EntityType Name="PessoasSolicitantes">
+          <Key>
+            <PropertyRef Name="IdPessoa" />
+          </Key>
+          <Property Name="IdPessoa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdEmpresa" Type="Int32" />
+          <Property Name="IdOutraEmpresa" Type="Int32" />
+          <Property Name="NomePessoa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Setor" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CPF" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Empresas" Relationship="Self.FK__PessoasSo__IdEmp__619B8048" FromRole="PessoasSolicitantes" ToRole="Empresas" />
+          <NavigationProperty Name="OutrasEmpresas" Relationship="Self.FK__PessoasSo__IdOut__628FA481" FromRole="PessoasSolicitantes" ToRole="OutrasEmpresas" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK__Casos__IdCategor__68487DD7">
+          <End Role="Categorias" Type="Self.Categorias" Multiplicity="0..1" />
+          <End Role="Casos" Type="Self.Casos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorias">
+              <PropertyRef Name="IdCategoria" />
+            </Principal>
+            <Dependent Role="Casos">
+              <PropertyRef Name="IdCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Casos__IdEmpresa__693CA210">
+          <End Role="Empresas" Type="Self.Empresas" Multiplicity="0..1" />
+          <End Role="Casos" Type="Self.Casos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresas">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="Casos">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Casos__IdOutraEm__6A30C649">
+          <End Role="OutrasEmpresas" Type="Self.OutrasEmpresas" Multiplicity="0..1" />
+          <End Role="Casos" Type="Self.Casos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OutrasEmpresas">
+              <PropertyRef Name="IdOutraEmpresa" />
+            </Principal>
+            <Dependent Role="Casos">
+              <PropertyRef Name="IdOutraEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Login__IdEmpresa__6D0D32F4">
+          <End Role="Empresas" Type="Self.Empresas" Multiplicity="0..1" />
+          <End Role="Login" Type="Self.Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresas">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="Login">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PessoasSo__IdEmp__619B8048">
+          <End Role="Empresas" Type="Self.Empresas" Multiplicity="0..1" />
+          <End Role="PessoasSolicitantes" Type="Self.PessoasSolicitantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresas">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="PessoasSolicitantes">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Login__IdOutraEm__6E01572D">
+          <End Role="OutrasEmpresas" Type="Self.OutrasEmpresas" Multiplicity="0..1" />
+          <End Role="Login" Type="Self.Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OutrasEmpresas">
+              <PropertyRef Name="IdOutraEmpresa" />
+            </Principal>
+            <Dependent Role="Login">
+              <PropertyRef Name="IdOutraEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PessoasSo__IdOut__628FA481">
+          <End Role="OutrasEmpresas" Type="Self.OutrasEmpresas" Multiplicity="0..1" />
+          <End Role="PessoasSolicitantes" Type="Self.PessoasSolicitantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OutrasEmpresas">
+              <PropertyRef Name="IdOutraEmpresa" />
+            </Principal>
+            <Dependent Role="PessoasSolicitantes">
+              <PropertyRef Name="IdOutraEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HelpUsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Casos" EntityType="Self.Casos" />
+          <EntitySet Name="Categorias" EntityType="Self.Categorias" />
+          <EntitySet Name="Empresas" EntityType="Self.Empresas" />
+          <EntitySet Name="Login" EntityType="Self.Login" />
+          <EntitySet Name="OutrasEmpresas" EntityType="Self.OutrasEmpresas" />
+          <EntitySet Name="PessoasSolicitantes" EntityType="Self.PessoasSolicitantes" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK__Casos__IdCategor__68487DD7" Association="Self.FK__Casos__IdCategor__68487DD7">
+            <End Role="Categorias" EntitySet="Categorias" />
+            <End Role="Casos" EntitySet="Casos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Casos__IdEmpresa__693CA210" Association="Self.FK__Casos__IdEmpresa__693CA210">
+            <End Role="Empresas" EntitySet="Empresas" />
+            <End Role="Casos" EntitySet="Casos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Casos__IdOutraEm__6A30C649" Association="Self.FK__Casos__IdOutraEm__6A30C649">
+            <End Role="OutrasEmpresas" EntitySet="OutrasEmpresas" />
+            <End Role="Casos" EntitySet="Casos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Login__IdEmpresa__6D0D32F4" Association="Self.FK__Login__IdEmpresa__6D0D32F4">
+            <End Role="Empresas" EntitySet="Empresas" />
+            <End Role="Login" EntitySet="Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PessoasSo__IdEmp__619B8048" Association="Self.FK__PessoasSo__IdEmp__619B8048">
+            <End Role="Empresas" EntitySet="Empresas" />
+            <End Role="PessoasSolicitantes" EntitySet="PessoasSolicitantes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Login__IdOutraEm__6E01572D" Association="Self.FK__Login__IdOutraEm__6E01572D">
+            <End Role="OutrasEmpresas" EntitySet="OutrasEmpresas" />
+            <End Role="Login" EntitySet="Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PessoasSo__IdOut__628FA481" Association="Self.FK__PessoasSo__IdOut__628FA481">
+            <End Role="OutrasEmpresas" EntitySet="OutrasEmpresas" />
+            <End Role="PessoasSolicitantes" EntitySet="PessoasSolicitantes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HelpUsModelStoreContainer" CdmEntityContainer="HelpUsEntities">
+          <EntitySetMapping Name="Casos">
+            <EntityTypeMapping TypeName="HelpUsModel.Casos">
+              <MappingFragment StoreEntitySet="Casos">
+                <ScalarProperty Name="IdCaso" ColumnName="IdCaso" />
+                <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="IdOutraEmpresa" ColumnName="IdOutraEmpresa" />
+                <ScalarProperty Name="QuantidadeTotal" ColumnName="QuantidadeTotal" />
+                <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+                <ScalarProperty Name="ValorTotal" ColumnName="ValorTotal" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="TituloCaso" ColumnName="TituloCaso" />
+                <ScalarProperty Name="DescricaoCaso" ColumnName="DescricaoCaso" />
+                <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+                <ScalarProperty Name="Avaliacao" ColumnName="Avaliacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categorias">
+            <EntityTypeMapping TypeName="HelpUsModel.Categorias">
+              <MappingFragment StoreEntitySet="Categorias">
+                <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+                <ScalarProperty Name="NomeCategoria" ColumnName="NomeCategoria" />
+                <ScalarProperty Name="TipoCategoria" ColumnName="TipoCategoria" />
+                <ScalarProperty Name="ativo" ColumnName="ativo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empresas">
+            <EntityTypeMapping TypeName="HelpUsModel.Empresas">
+              <MappingFragment StoreEntitySet="Empresas">
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="NomeEmpresa" ColumnName="NomeEmpresa" />
+                <ScalarProperty Name="EmailEmpresa" ColumnName="EmailEmpresa" />
+                <ScalarProperty Name="Cnpj" ColumnName="Cnpj" />
+                <ScalarProperty Name="CEP" ColumnName="CEP" />
+                <ScalarProperty Name="TelefoneEmpresa" ColumnName="TelefoneEmpresa" />
+                <ScalarProperty Name="UfEmpresa" ColumnName="UfEmpresa" />
+                <ScalarProperty Name="CidadeEmpresa" ColumnName="CidadeEmpresa" />
+                <ScalarProperty Name="ativo" ColumnName="ativo" />
+                <ScalarProperty Name="DataDisativacao" ColumnName="DataDisativacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Login">
+            <EntityTypeMapping TypeName="HelpUsModel.Login">
+              <MappingFragment StoreEntitySet="Login">
+                <ScalarProperty Name="IdLogin" ColumnName="IdLogin" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="IdOutraEmpresa" ColumnName="IdOutraEmpresa" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Senha" ColumnName="Senha" />
+                <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OutrasEmpresas">
+            <EntityTypeMapping TypeName="HelpUsModel.OutrasEmpresas">
+              <MappingFragment StoreEntitySet="OutrasEmpresas">
+                <ScalarProperty Name="IdOutraEmpresa" ColumnName="IdOutraEmpresa" />
+                <ScalarProperty Name="OutraOutrasEmpresas" ColumnName="OutraOutrasEmpresas" />
+                <ScalarProperty Name="EmailOutrasEmpresas" ColumnName="EmailOutrasEmpresas" />
+                <ScalarProperty Name="CEPOutrasEmpresas" ColumnName="CEPOutrasEmpresas" />
+                <ScalarProperty Name="TelefoneOutrasEmpresas" ColumnName="TelefoneOutrasEmpresas" />
+                <ScalarProperty Name="UfOutrasEmpresas" ColumnName="UfOutrasEmpresas" />
+                <ScalarProperty Name="CidadeOutrasEmpresas" ColumnName="CidadeOutrasEmpresas" />
+                <ScalarProperty Name="ativo" ColumnName="ativo" />
+                <ScalarProperty Name="DataDisativacao" ColumnName="DataDisativacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PessoasSolicitantes">
+            <EntityTypeMapping TypeName="HelpUsModel.PessoasSolicitantes">
+              <MappingFragment StoreEntitySet="PessoasSolicitantes">
+                <ScalarProperty Name="IdPessoa" ColumnName="IdPessoa" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="IdOutraEmpresa" ColumnName="IdOutraEmpresa" />
+                <ScalarProperty Name="NomePessoa" ColumnName="NomePessoa" />
+                <ScalarProperty Name="Setor" ColumnName="Setor" />
+                <ScalarProperty Name="CPF" ColumnName="CPF" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="HelpUsModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

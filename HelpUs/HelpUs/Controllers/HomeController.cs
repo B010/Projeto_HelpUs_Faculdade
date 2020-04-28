@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HelpUs.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,11 @@ namespace HelpUs.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            HelpUsEntities db = new HelpUsEntities();
+
+            List<Casos> casos = db.Casos.Where(x=> x.Ativo == true).ToList();
+
+            return View(casos);
         }
 
         public ActionResult About()

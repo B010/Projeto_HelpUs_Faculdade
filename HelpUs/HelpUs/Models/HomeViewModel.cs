@@ -5,7 +5,9 @@ using System.Web;
 
 namespace HelpUs.Models
 {
-    public class HomeViewModel
+    public class HomeViewModel : Casos
     {
+        HomeViewModel() { }        
+
     }
 }
