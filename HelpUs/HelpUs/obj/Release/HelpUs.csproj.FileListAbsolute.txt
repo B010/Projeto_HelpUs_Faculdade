@@ -156,3 +156,5 @@ D:\github\Projeto_HelpUs_Faculdade\HelpUs\HelpUs\obj\Release\HelpUs.csproj.CoreC
 D:\github\Projeto_HelpUs_Faculdade\HelpUs\HelpUs\obj\Release\HelpUs.csproj.CopyComplete
 D:\github\Projeto_HelpUs_Faculdade\HelpUs\HelpUs\obj\Release\HelpUs.dll
 D:\github\Projeto_HelpUs_Faculdade\HelpUs\HelpUs\obj\Release\HelpUs.pdb
+D:\github\Projeto_HelpUs_Faculdade\HelpUs\HelpUs\bin\EntityFramework.dll
+D:\github\Projeto_HelpUs_Faculdade\HelpUs\HelpUs\bin\EntityFramework.xml

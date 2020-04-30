@@ -13,10 +13,10 @@ namespace HelpUs
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class HelpUsEntities : DbContext
+    public partial class DbHelpUsEntities : DbContext
     {
-        public HelpUsEntities()
-            : base("name=HelpUsEntities")
+        public DbHelpUsEntities()
+            : base("name=DbHelpUsEntities")
         {
         }
     
@@ -31,6 +31,5 @@ namespace HelpUs
         public DbSet<Login> Login { get; set; }
         public DbSet<OutrasEmpresas> OutrasEmpresas { get; set; }
         public DbSet<PessoasSolicitantes> PessoasSolicitantes { get; set; }
-        public DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

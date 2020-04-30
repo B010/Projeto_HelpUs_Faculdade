@@ -11,11 +11,18 @@ namespace HelpUs.Controllers
     {
         public ActionResult Index()
         {
-            HelpUsEntities db = new HelpUsEntities();
+            DbHelpUsEntities db = new DbHelpUsEntities();
 
-            List<Casos> casos = db.Casos.Where(x=> x.Ativo == true).ToList();
+            List<Casos> casos = db.Casos.ToList();
+            List<Categorias> categoria = db.Categorias.ToList();
 
-            return View(casos);
+            HomeViewModel model = new HomeViewModel()
+            {
+                ListCasos = casos,
+                ListCategoria = categoria.Select(x => new HomeViewModel.Categoria { NomeCategoria = x.NomeCategoria}).ToList()
+            };
+
+            return View(model);
         }
 
         public ActionResult About()
