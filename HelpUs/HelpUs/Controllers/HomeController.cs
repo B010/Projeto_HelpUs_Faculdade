@@ -13,13 +13,12 @@ namespace HelpUs.Controllers
         {
             DbHelpUsEntities db = new DbHelpUsEntities();
 
-            List<Casos> casos = db.Casos.ToList();
-            List<Categorias> categoria = db.Categorias.ToList();
+            List<Casos> casos = db.Casos.Where(x => x.Ativo == true && x.Avaliacao == true).ToList();
 
             HomeViewModel model = new HomeViewModel()
             {
                 ListCasos = casos,
-                ListCategoria = categoria.Select(x => new HomeViewModel.Categoria { NomeCategoria = x.NomeCategoria}).ToList()
+                ListCategoria = categoria
             };
 
             return View(model);
