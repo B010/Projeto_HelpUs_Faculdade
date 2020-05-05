@@ -17,8 +17,7 @@ namespace HelpUs.Controllers
 
             HomeViewModel model = new HomeViewModel()
             {
-                ListCasos = casos,
-                ListCategoria = categoria
+                ListCasos = casos
             };
 
             return View(model);
@@ -28,18 +27,6 @@ namespace HelpUs.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
-        public ActionResult Login()
-        {
             return View();
         }
     }
