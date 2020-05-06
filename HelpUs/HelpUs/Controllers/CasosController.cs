@@ -64,7 +64,7 @@ namespace HelpUs.Controllers
             return View(model);
         }
 
-        public ActionResult Update()
+        public ActionResult Update(CasosViewModel model)
         {
             return RedirectToAction(nameof(Index));
         }
