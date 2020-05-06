@@ -268,6 +268,7 @@ D:\github\Projeto_HelpUs_Faculdade\HelpUs\HelpUs\bin\dotnet-aspnet-codegenerator
 D:\github\Projeto_HelpUs_Faculdade\HelpUs\HelpUs\bin\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 D:\github\Projeto_HelpUs_Faculdade\HelpUs\HelpUs\bin\Microsoft.AspNetCore.Mvc.Razor.dll
 D:\github\Projeto_HelpUs_Faculdade\HelpUs\HelpUs\bin\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
+D:\github\Projeto_HelpUs_Faculdade\HelpUs\HelpUs\bin\Microsoft.AspNetCore.Mvc.RazorPages.dll
 D:\github\Projeto_HelpUs_Faculdade\HelpUs\HelpUs\bin\Microsoft.AspNetCore.Mvc.TagHelpers.dll
 D:\github\Projeto_HelpUs_Faculdade\HelpUs\HelpUs\bin\Microsoft.AspNetCore.Razor.dll
 D:\github\Projeto_HelpUs_Faculdade\HelpUs\HelpUs\bin\Microsoft.AspNetCore.Razor.Language.dll
@@ -306,6 +307,7 @@ D:\github\Projeto_HelpUs_Faculdade\HelpUs\HelpUs\bin\dotnet-aspnet-codegenerator
 D:\github\Projeto_HelpUs_Faculdade\HelpUs\HelpUs\bin\Microsoft.AspNetCore.Cryptography.KeyDerivation.xml
 D:\github\Projeto_HelpUs_Faculdade\HelpUs\HelpUs\bin\Microsoft.AspNetCore.Mvc.Razor.xml
 D:\github\Projeto_HelpUs_Faculdade\HelpUs\HelpUs\bin\Microsoft.AspNetCore.Mvc.Razor.Extensions.xml
+D:\github\Projeto_HelpUs_Faculdade\HelpUs\HelpUs\bin\Microsoft.AspNetCore.Mvc.RazorPages.xml
 D:\github\Projeto_HelpUs_Faculdade\HelpUs\HelpUs\bin\Microsoft.AspNetCore.Mvc.TagHelpers.xml
 D:\github\Projeto_HelpUs_Faculdade\HelpUs\HelpUs\bin\Microsoft.AspNetCore.Razor.xml
 D:\github\Projeto_HelpUs_Faculdade\HelpUs\HelpUs\bin\Microsoft.AspNetCore.Razor.Language.xml
