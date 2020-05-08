@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DbHelpUsModelStoreContainer" CdmEntityContainer="DbHelpUsEntities">
+    <EntitySetMapping Name="Casos">
+      <EntityTypeMapping TypeName="DbHelpUsModel.Casos">
+        <MappingFragment StoreEntitySet="Casos">
+          <ScalarProperty Name="IdCaso" ColumnName="IdCaso" />
+          <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+          <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+          <ScalarProperty Name="IdOutraEmpresa" ColumnName="IdOutraEmpresa" />
+          <ScalarProperty Name="QuantidadeTotal" ColumnName="QuantidadeTotal" />
+          <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+          <ScalarProperty Name="ValorTotal" ColumnName="ValorTotal" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="TituloCaso" ColumnName="TituloCaso" />
+          <ScalarProperty Name="DescricaoCaso" ColumnName="DescricaoCaso" />
+          <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+          <ScalarProperty Name="Avaliacao" ColumnName="Avaliacao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categorias">
+      <EntityTypeMapping TypeName="DbHelpUsModel.Categorias">
+        <MappingFragment StoreEntitySet="Categorias">
+          <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+          <ScalarProperty Name="NomeCategoria" ColumnName="NomeCategoria" />
+          <ScalarProperty Name="TipoCategoria" ColumnName="TipoCategoria" />
+          <ScalarProperty Name="ativo" ColumnName="ativo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empresas">
+      <EntityTypeMapping TypeName="DbHelpUsModel.Empresas">
+        <MappingFragment StoreEntitySet="Empresas">
+          <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+          <ScalarProperty Name="NomeEmpresa" ColumnName="NomeEmpresa" />
+          <ScalarProperty Name="EmailEmpresa" ColumnName="EmailEmpresa" />
+          <ScalarProperty Name="Cnpj" ColumnName="Cnpj" />
+          <ScalarProperty Name="CEP" ColumnName="CEP" />
+          <ScalarProperty Name="TelefoneEmpresa" ColumnName="TelefoneEmpresa" />
+          <ScalarProperty Name="UfEmpresa" ColumnName="UfEmpresa" />
+          <ScalarProperty Name="CidadeEmpresa" ColumnName="CidadeEmpresa" />
+          <ScalarProperty Name="ativo" ColumnName="ativo" />
+          <ScalarProperty Name="DataDisativacao" ColumnName="DataDisativacao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Login">
+      <EntityTypeMapping TypeName="DbHelpUsModel.Login">
+        <MappingFragment StoreEntitySet="Login">
+          <ScalarProperty Name="IdLogin" ColumnName="IdLogin" />
+          <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+          <ScalarProperty Name="IdOutraEmpresa" ColumnName="IdOutraEmpresa" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="Senha" ColumnName="Senha" />
+          <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OutrasEmpresas">
+      <EntityTypeMapping TypeName="DbHelpUsModel.OutrasEmpresas">
+        <MappingFragment StoreEntitySet="OutrasEmpresas">
+          <ScalarProperty Name="IdOutraEmpresa" ColumnName="IdOutraEmpresa" />
+          <ScalarProperty Name="OutraOutrasEmpresas" ColumnName="OutraOutrasEmpresas" />
+          <ScalarProperty Name="EmailOutrasEmpresas" ColumnName="EmailOutrasEmpresas" />
+          <ScalarProperty Name="CEPOutrasEmpresas" ColumnName="CEPOutrasEmpresas" />
+          <ScalarProperty Name="TelefoneOutrasEmpresas" ColumnName="TelefoneOutrasEmpresas" />
+          <ScalarProperty Name="UfOutrasEmpresas" ColumnName="UfOutrasEmpresas" />
+          <ScalarProperty Name="CidadeOutrasEmpresas" ColumnName="CidadeOutrasEmpresas" />
+          <ScalarProperty Name="ativo" ColumnName="ativo" />
+          <ScalarProperty Name="DataDisativacao" ColumnName="DataDisativacao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PessoasSolicitantes">
+      <EntityTypeMapping TypeName="DbHelpUsModel.PessoasSolicitantes">
+        <MappingFragment StoreEntitySet="PessoasSolicitantes">
+          <ScalarProperty Name="IdPessoa" ColumnName="IdPessoa" />
+          <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+          <ScalarProperty Name="IdOutraEmpresa" ColumnName="IdOutraEmpresa" />
+          <ScalarProperty Name="NomePessoa" ColumnName="NomePessoa" />
+          <ScalarProperty Name="Setor" ColumnName="Setor" />
+          <ScalarProperty Name="CPF" ColumnName="CPF" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

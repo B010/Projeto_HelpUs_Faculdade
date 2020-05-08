@@ -1,0 +1,41 @@
+﻿@model HelpUs.Models.HomeViewModel
+@{
+    ViewBag.Title = "Casos";
+}
+
+<div id="main">
+    <div class="col-md-12">
+        <table id="table" class="table table-striped ">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>IdCaso</th>
+                    <th>IdEmpresa</th>
+                    <th>Categoria</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var el in Model.ListCasos)
+                {
+                    <tr>
+                        <td><a class="btn btn-primary" href="@Url.Action("Delete",new { id = el.IdCaso })"><i class="fa fa-trash"></i></a> <a class="btn btn-primary" href="@Url.Action("Edit", new { id = el.IdCaso })"><i class="fa fa-pencil"></i></a></td>
+                        <td>@el.TituloCaso</td>
+                        <td>@el.DescricaoCaso</td>
+                        <td>@el.Categorias.NomeCategoria</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="//cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+
+@section Scripts{
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#table').DataTable();
+        });
+    </script>
+}

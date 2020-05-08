@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbHelpUsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Casos">
+    <Key>
+      <PropertyRef Name="IdCaso" />
+    </Key>
+    <Property Name="IdCaso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdCategoria" Type="int" />
+    <Property Name="IdEmpresa" Type="int" />
+    <Property Name="IdOutraEmpresa" Type="int" />
+    <Property Name="QuantidadeTotal" Type="int" />
+    <Property Name="Quantidade" Type="int" />
+    <Property Name="ValorTotal" Type="decimal" Precision="19" Scale="2" />
+    <Property Name="Valor" Type="decimal" Precision="19" Scale="2" />
+    <Property Name="TituloCaso" Type="varchar" MaxLength="35" Nullable="false" />
+    <Property Name="DescricaoCaso" Type="varchar" MaxLength="50" />
+    <Property Name="Ativo" Type="bit" Nullable="false" />
+    <Property Name="Avaliacao" Type="bit" />
+  </EntityType>
+  <EntityType Name="Categorias">
+    <Key>
+      <PropertyRef Name="IdCategoria" />
+    </Key>
+    <Property Name="IdCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NomeCategoria" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="TipoCategoria" Type="int" Nullable="false" />
+    <Property Name="ativo" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Empresas">
+    <Key>
+      <PropertyRef Name="IdEmpresa" />
+    </Key>
+    <Property Name="IdEmpresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NomeEmpresa" Type="varchar" MaxLength="35" Nullable="false" />
+    <Property Name="EmailEmpresa" Type="varchar" MaxLength="35" Nullable="false" />
+    <Property Name="Cnpj" Type="varchar" MaxLength="17" Nullable="false" />
+    <Property Name="CEP" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="TelefoneEmpresa" Type="int" Nullable="false" />
+    <Property Name="UfEmpresa" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="CidadeEmpresa" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="ativo" Type="bit" Nullable="false" />
+    <Property Name="DataDisativacao" Type="date" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="IdLogin" />
+    </Key>
+    <Property Name="IdLogin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdEmpresa" Type="int" />
+    <Property Name="IdOutraEmpresa" Type="int" />
+    <Property Name="Usuario" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Senha" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="TipoUsuario" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OutrasEmpresas">
+    <Key>
+      <PropertyRef Name="IdOutraEmpresa" />
+    </Key>
+    <Property Name="IdOutraEmpresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OutraOutrasEmpresas" Type="varchar" MaxLength="35" Nullable="false" />
+    <Property Name="EmailOutrasEmpresas" Type="varchar" MaxLength="35" Nullable="false" />
+    <Property Name="CEPOutrasEmpresas" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="TelefoneOutrasEmpresas" Type="int" Nullable="false" />
+    <Property Name="UfOutrasEmpresas" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="CidadeOutrasEmpresas" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="ativo" Type="bit" Nullable="false" />
+    <Property Name="DataDisativacao" Type="date" />
+  </EntityType>
+  <EntityType Name="PessoasSolicitantes">
+    <Key>
+      <PropertyRef Name="IdPessoa" />
+    </Key>
+    <Property Name="IdPessoa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdEmpresa" Type="int" />
+    <Property Name="IdOutraEmpresa" Type="int" />
+    <Property Name="NomePessoa" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Setor" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="CPF" Type="varchar" MaxLength="11" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Casos__IdCategor__5535A963">
+    <End Role="Categorias" Type="Self.Categorias" Multiplicity="0..1" />
+    <End Role="Casos" Type="Self.Casos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categorias">
+        <PropertyRef Name="IdCategoria" />
+      </Principal>
+      <Dependent Role="Casos">
+        <PropertyRef Name="IdCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Casos__IdEmpresa__5629CD9C">
+    <End Role="Empresas" Type="Self.Empresas" Multiplicity="0..1" />
+    <End Role="Casos" Type="Self.Casos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresas">
+        <PropertyRef Name="IdEmpresa" />
+      </Principal>
+      <Dependent Role="Casos">
+        <PropertyRef Name="IdEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Casos__IdOutraEm__571DF1D5">
+    <End Role="OutrasEmpresas" Type="Self.OutrasEmpresas" Multiplicity="0..1" />
+    <End Role="Casos" Type="Self.Casos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OutrasEmpresas">
+        <PropertyRef Name="IdOutraEmpresa" />
+      </Principal>
+      <Dependent Role="Casos">
+        <PropertyRef Name="IdOutraEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Login__IdEmpresa__59FA5E80">
+    <End Role="Empresas" Type="Self.Empresas" Multiplicity="0..1" />
+    <End Role="Login" Type="Self.Login" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresas">
+        <PropertyRef Name="IdEmpresa" />
+      </Principal>
+      <Dependent Role="Login">
+        <PropertyRef Name="IdEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Login__IdOutraEm__5AEE82B9">
+    <End Role="OutrasEmpresas" Type="Self.OutrasEmpresas" Multiplicity="0..1" />
+    <End Role="Login" Type="Self.Login" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OutrasEmpresas">
+        <PropertyRef Name="IdOutraEmpresa" />
+      </Principal>
+      <Dependent Role="Login">
+        <PropertyRef Name="IdOutraEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PessoasSo__IdEmp__4E88ABD4">
+    <End Role="Empresas" Type="Self.Empresas" Multiplicity="0..1" />
+    <End Role="PessoasSolicitantes" Type="Self.PessoasSolicitantes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresas">
+        <PropertyRef Name="IdEmpresa" />
+      </Principal>
+      <Dependent Role="PessoasSolicitantes">
+        <PropertyRef Name="IdEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PessoasSo__IdOut__4F7CD00D">
+    <End Role="OutrasEmpresas" Type="Self.OutrasEmpresas" Multiplicity="0..1" />
+    <End Role="PessoasSolicitantes" Type="Self.PessoasSolicitantes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OutrasEmpresas">
+        <PropertyRef Name="IdOutraEmpresa" />
+      </Principal>
+      <Dependent Role="PessoasSolicitantes">
+        <PropertyRef Name="IdOutraEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DbHelpUsModelStoreContainer">
+    <EntitySet Name="Casos" EntityType="Self.Casos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Categorias" EntityType="Self.Categorias" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Empresas" EntityType="Self.Empresas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OutrasEmpresas" EntityType="Self.OutrasEmpresas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PessoasSolicitantes" EntityType="Self.PessoasSolicitantes" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Casos__IdCategor__5535A963" Association="Self.FK__Casos__IdCategor__5535A963">
+      <End Role="Categorias" EntitySet="Categorias" />
+      <End Role="Casos" EntitySet="Casos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Casos__IdEmpresa__5629CD9C" Association="Self.FK__Casos__IdEmpresa__5629CD9C">
+      <End Role="Empresas" EntitySet="Empresas" />
+      <End Role="Casos" EntitySet="Casos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Casos__IdOutraEm__571DF1D5" Association="Self.FK__Casos__IdOutraEm__571DF1D5">
+      <End Role="OutrasEmpresas" EntitySet="OutrasEmpresas" />
+      <End Role="Casos" EntitySet="Casos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Login__IdEmpresa__59FA5E80" Association="Self.FK__Login__IdEmpresa__59FA5E80">
+      <End Role="Empresas" EntitySet="Empresas" />
+      <End Role="Login" EntitySet="Login" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Login__IdOutraEm__5AEE82B9" Association="Self.FK__Login__IdOutraEm__5AEE82B9">
+      <End Role="OutrasEmpresas" EntitySet="OutrasEmpresas" />
+      <End Role="Login" EntitySet="Login" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PessoasSo__IdEmp__4E88ABD4" Association="Self.FK__PessoasSo__IdEmp__4E88ABD4">
+      <End Role="Empresas" EntitySet="Empresas" />
+      <End Role="PessoasSolicitantes" EntitySet="PessoasSolicitantes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PessoasSo__IdOut__4F7CD00D" Association="Self.FK__PessoasSo__IdOut__4F7CD00D">
+      <End Role="OutrasEmpresas" EntitySet="OutrasEmpresas" />
+      <End Role="PessoasSolicitantes" EntitySet="PessoasSolicitantes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
