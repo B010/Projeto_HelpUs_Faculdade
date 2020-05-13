@@ -30,11 +30,17 @@ namespace HelpUs.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Details(int idCaso)
         {
-            ViewBag.Message = "Your contact page.";
+            DbHelpUsEntities db = new DbHelpUsEntities();
 
-            return View();
+            var caso = db.Casos.First(a => a.IdCaso == idCaso);
+
+            var viewModel = new HomeViewModel()
+            {
+                CasoDetalhes = caso
+            };
+            return View(viewModel);
         }
 
         public ActionResult Login()

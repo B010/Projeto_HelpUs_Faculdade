@@ -25,12 +25,31 @@ namespace HelpUs.Controllers
 
         public ActionResult New()
         {
-            return View();
+            DbHelpUsEntities db = new DbHelpUsEntities();
+            List<Categorias> categorias = db.Categorias.ToList();
+            IDictionary<int, string> combocategorias = new Dictionary<int, string>();
+
+            foreach (var cat in categorias)
+            {
+                combocategorias.Add(cat.IdCategoria, cat.NomeCategoria);
+            }
+
+            CasosViewModel model = new CasosViewModel()
+            {
+                CategoriasSelect = combocategorias.AsSelectListItem()
+            };
+
+            return View(model);
         }
 
-        public ActionResult Create()
+        [HttpPost]
+        public ActionResult Create(CasosViewModel model)
         {
-            return View();
+            DbHelpUsEntities db = new DbHelpUsEntities();
+
+            db.Casos.Add(new Casos { DescricaoCaso = model.DescricaoCaso, Quantidade = model.Quantidade, Valor = model.Valor, IdCategoria = model.IdCategoria, TituloCaso = model.TituloCaso, Ativo = true, IdEmpresa = 1, Avaliacao = false, QuantidadeTotal = 0, ValorTotal = 0 });
+            db.SaveChanges();
+            return RedirectToAction(nameof(Index));
         }
 
         public ActionResult Edit(int id)
@@ -63,12 +82,22 @@ namespace HelpUs.Controllers
             return View(model);
         }
 
+        [HttpPost]
         public ActionResult Update(CasosViewModel model)
         {
+            DbHelpUsEntities db = new DbHelpUsEntities();
+            var caso = db.Casos.First(a => a.IdCaso == model.IdCaso);
+
+            caso.IdCategoria = model.IdCategoria;
+            caso.Quantidade = model.Quantidade;
+            caso.Valor = model.Valor;
+            caso.TituloCaso = model.TituloCaso;
+            caso.DescricaoCaso = model.DescricaoCaso;
+
+            db.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpDelete]
         public ActionResult Delete(int id)
         {
             DbHelpUsEntities db = new DbHelpUsEntities();

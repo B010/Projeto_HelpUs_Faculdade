@@ -26,28 +26,28 @@
                         <div class="col-md-12" style="max-height:40%; min-height:30%">
                             @caso.DescricaoCaso
                         </div>
-                        @if (caso.Quantidade != 0)
+                        @if (caso.Quantidade != null)
                         {
                             <div class="col-md-4">
                                 <label>Quantidade Arrecadada: <b style="color:green">@caso.QuantidadeTotal</b></label>
                             </div>
                             <div class="col-md-1"></div>
                             <div class="col-md-4">
-                                <label>Quantidade Necessaria: <b style="color:red">@caso.Quantidade</b></label>
+                                <label>Quantidade Necessaria: <b style="color:blue">@caso.Quantidade</b></label>
                             </div>
                         }
                         else
                         {
                             <div class="col-md-4">
-                                <label>Valor Arrecadado: <b style="color:green">@caso.ValorTotal</b></label>
+                                <label>Valor Arrecadado: <b style="color:green">R$@caso.ValorTotal</b></label>
                             </div>
                             <div class="col-md-1"></div>
                             <div class="col-md-4">
-                                <label>Valor Necessario: <b style="color:blue">@caso.Valor</b></label>
+                                <label>Valor Necessario: <b style="color:blue">R$@caso.Valor</b></label>
                             </div>
                         }
                         <div class="col-md-3">
-                            <button class="btn btn-default">Detalhes</button>
+                            <button onclick="location.href='@Url.Action("Details", "Home", new { caso.IdCaso })'" class="btn btn-default">Detalhes</button>
                         </div>
                     </div>
                 </div>
