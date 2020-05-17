@@ -18,7 +18,7 @@
                     @foreach (var el in Model.ListCasos)
                     {
                         <tr>
-                            <td><a class="btn btn-primary" href="@Url.Action("Edit", new { id = el.IdCaso })"><i class="fa fa-pencil"></i></a> <a class="btn btn-primary delete" data-id="@el.IdCaso" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash"></i></a></td>
+                            <td><a class="btn btn-primary" href="@Url.Action("Edit", new { id = el.IdCaso })"><i class="fa fa-pencil"></i></a> <a class="btn btn-danger delete" data-id="@el.IdCaso" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash"></i></a></td>
                             <td>@el.TituloCaso</td>
                             <td>@el.DescricaoCaso</td>
                             <td>@el.Categorias.NomeCategoria</td>

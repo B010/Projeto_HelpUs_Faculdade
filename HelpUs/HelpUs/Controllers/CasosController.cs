@@ -23,7 +23,7 @@ namespace HelpUs.Controllers
             return View(model);
         }
 
-        public ActionResult New()
+        public ActionResult New(CasosViewModel model)
         {
             DbHelpUsEntities db = new DbHelpUsEntities();
             List<Categorias> categorias = db.Categorias.ToList();
@@ -34,17 +34,37 @@ namespace HelpUs.Controllers
                 combocategorias.Add(cat.IdCategoria, cat.NomeCategoria);
             }
 
-            CasosViewModel model = new CasosViewModel()
+            CasosViewModel viewModel = new CasosViewModel()
             {
+                DescricaoCaso = model.DescricaoCaso,
+                TituloCaso = model.TituloCaso,
+                Quantidade = model.Quantidade,
+                QuantidadeTotal = model.QuantidadeTotal,
+                Valor = model.Valor,
+                ValorTotal = model.ValorTotal,
+                IdCategoria = model.IdCategoria,
                 CategoriasSelect = combocategorias.AsSelectListItem()
             };
 
-            return View(model);
+            return View(viewModel);
         }
 
         [HttpPost]
         public ActionResult Create(CasosViewModel model)
         {
+            if (string.IsNullOrEmpty(model.TituloCaso))
+            {
+                return RedirectToAction(nameof(New), new { model });
+            }
+            if (model.Quantidade == null && model.Valor == null)
+            {
+                return RedirectToAction(nameof(New), new { model });
+            }
+            if (string.IsNullOrEmpty(model.DescricaoCaso))
+            {
+                return RedirectToAction(nameof(New), new { model });
+            }
+
             DbHelpUsEntities db = new DbHelpUsEntities();
 
             db.Casos.Add(new Casos { DescricaoCaso = model.DescricaoCaso, Quantidade = model.Quantidade, Valor = model.Valor, IdCategoria = model.IdCategoria, TituloCaso = model.TituloCaso, Ativo = true, IdEmpresa = 1, Avaliacao = false, QuantidadeTotal = 0, ValorTotal = 0 });
@@ -52,7 +72,7 @@ namespace HelpUs.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id, string error)
         {
             DbHelpUsEntities db = new DbHelpUsEntities();
             Casos casos = db.Casos.Where(x => x.IdCaso == id).FirstOrDefault();
@@ -85,6 +105,19 @@ namespace HelpUs.Controllers
         [HttpPost]
         public ActionResult Update(CasosViewModel model)
         {
+            if (string.IsNullOrEmpty(model.TituloCaso))
+            {                
+                return RedirectToAction(nameof(Edit), new { id = model.IdCaso });
+            }
+            if (model.Quantidade == null && model.Valor == null)
+            {
+                return RedirectToAction(nameof(Edit), new { id = model.IdCaso });
+            }
+            if (string.IsNullOrEmpty(model.DescricaoCaso))
+            {
+                return RedirectToAction(nameof(Edit), new { id = model.IdCaso });
+            }
+
             DbHelpUsEntities db = new DbHelpUsEntities();
             var caso = db.Casos.First(a => a.IdCaso == model.IdCaso);
 
