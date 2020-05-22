@@ -44,13 +44,23 @@
 @section Scripts{
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script>
+
         var ctx = document.getElementById('pizza').getContext('2d');
+        var datas;
+
+        if ('@Model.CasoDetalhes.Quantidade' > 0) {
+            datas = ['@Model.CasoDetalhes.QuantidadeTotal', '@Model.CasoDetalhes.Quantidade']
+        }
+        else {
+            datas = ['@Model.CasoDetalhes.ValorTotal', '@Model.CasoDetalhes.Valor']
+        }
+
         var myChart = new Chart(ctx, {
             type: 'pie',
             data: {
                 labels: ['Arrecadado', 'Restando'],
                 datasets: [{
-                    data: [12, 19],
+                    data: datas,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)'

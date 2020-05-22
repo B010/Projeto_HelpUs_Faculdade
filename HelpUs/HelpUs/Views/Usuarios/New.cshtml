@@ -2,14 +2,12 @@
 
 
 <div class="row">
-    @using (Html.BeginForm("Update", "Casos", FormMethod.Post, new { @class = "form-horizontal" }))
-    {
-        <input type="hidden" id="IdCaso" name="IdCaso" value="@Model.IdCaso" />
-
+    @using (Html.BeginForm("Create", "Casos", FormMethod.Post, new { @class = "form-horizontal" }))
+    {        
         <div class="form-group">
             <label class="col-md-2 control-label">Titulo</label>
             <div class="col-md-4">
-                <input type="text" id="TituloCaso" name="TituloCaso" value="@Model.TituloCaso" class="form-control" required/>
+                <input type="text" id="TituloCaso" name="TituloCaso" value="@Model.TituloCaso" class="form-control" required />
             </div>
             <label class="col-md-2 control-label">Categorias</label>
             <div class="col-md-3">
@@ -32,14 +30,14 @@
         <div class="form-group">
             <label class="col-md-2 control-label">Valor</label>
             <div class="col-md-3">
-                <input type="text" id="Valor" name="Valor" value="@Model.Valor" class="form-control money" required/>
+                <input type="text" id="Valor" name="Valor" value="@Model.Valor" class="form-control money" required />
             </div>
 
             <div class="col-md-1"></div>
 
             <label class="col-md-2 control-label">Quantidade</label>
             <div class="col-md-2">
-                <input type="text" id="Quantidade" name="Quantidade" value="@Model.Quantidade" class="form-control" required/>
+                <input type="text" id="Quantidade" name="Quantidade" value="@Model.Quantidade" class="form-control" required />
             </div>
         </div>
         <div class="form-actions" style="">

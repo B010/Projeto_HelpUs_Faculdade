@@ -1,0 +1,83 @@
+﻿@model HelpUs.Models.HomeViewModel
+@{
+    ViewBag.Title = "Casos";
+}
+    <input type="hidden" id="IdCaso" name="IdCaso" value="@Model.IdCaso" />
+    <div id="main">
+        <div class="col-md-12">
+            <table id="table" class="table table-striped display">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Titulo</th>
+                        <th>Descrição</th>
+                        <th>Categoria</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var el in Model.ListCasos)
+                    {
+                        <tr>
+                            <td><a class="btn btn-primary" href="@Url.Action("Edit", new { id = el.IdCaso })"><i class="fa fa-pencil"></i></a> <a class="btn btn-danger delete" data-id="@el.IdCaso" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash"></i></a></td>
+                            <td>@el.TituloCaso</td>
+                            <td>@el.DescricaoCaso</td>
+                            <td>@el.Categorias.NomeCategoria</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Delete</h4>
+                    </div>
+                    <div class="modal-body">
+                        <H5>Você Realmente quer deletar este caso?</H5>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                        <a id="deleteButtomModal" class="btn btn-danger" href=""><i>Deletar</i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+<link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="//cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="//cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+
+@section Scripts{
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#table').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        text: 'Novo',
+                        action: function (e, dt, node, config) {
+                            window.location.href = '/Casos/New';
+                        }
+                    }
+                ],
+                aoColumnDefs: [
+                    { "bSortable": false, "aTargets": [0] },
+                    { "bSearchable": false, "aTargets": [0] }
+                ],
+                order: [[1,"asc"]]
+
+            });
+
+            $('.delete').on('click', function () {
+                $("#deleteButtomModal").attr("href", "/Casos/Delete/" + $(this).data('id'))
+                console.log($("#deleteButtomModal").attr("href"));
+            })
+        });
+    </script>
+}

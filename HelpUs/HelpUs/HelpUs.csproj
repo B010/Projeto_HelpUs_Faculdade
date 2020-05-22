@@ -133,6 +133,7 @@
       <DependentUpon>HelpUs.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\CasosController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Empresas.cs">
       <DependentUpon>HelpUs.tt</DependentUpon>
@@ -240,6 +241,10 @@
     <Content Include="Views\Casos\Edit.cshtml" />
     <Content Include="Views\Casos\New.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Usuarios\Edit.cshtml" />
+    <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\Usuarios\New.cshtml" />
+    <Content Include="Views\Usuarios\_Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
