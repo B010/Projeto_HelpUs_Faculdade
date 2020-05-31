@@ -14,6 +14,7 @@ body,
 #wrapper,
 #page-wrapper {
     height: 100%;
+    background-color: #6c0404;
 }
 #wrapper {
     padding-left: 0;

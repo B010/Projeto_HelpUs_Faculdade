@@ -10,6 +10,9 @@ namespace HelpUs.Models
         public int IdCaso { get; set; }
         public string TituloCaso { get; set; }
 
+        public decimal? Valor { get; set; }
+        public decimal? ValorTotal { get; set; }
+
         public Casos CasoDetalhes { get; set; }
 
         public List<Casos> ListCasos { get; set; } = new List<Casos>();

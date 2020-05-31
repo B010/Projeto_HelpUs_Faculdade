@@ -9,7 +9,7 @@
         <div class="form-group">
             <label class="col-md-2 control-label">Titulo</label>
             <div class="col-md-4">
-                <input type="text" id="TituloCaso" name="TituloCaso" value="@Model.TituloCaso" class="form-control" required/>
+                <input type="text" id="TituloCaso" name="TituloCaso" value="@Model.TituloCaso" class="form-control" required />
             </div>
             <label class="col-md-2 control-label">Categorias</label>
             <div class="col-md-3">
@@ -32,14 +32,14 @@
         <div class="form-group">
             <label class="col-md-2 control-label">Valor</label>
             <div class="col-md-3">
-                <input type="text" id="Valor" name="Valor" value="@Model.Valor" class="form-control money" required/>
+                <input type="text" id="Valor" name="Valor" value="@Model.Valor" class="form-control money" required />
             </div>
 
             <div class="col-md-1"></div>
 
             <label class="col-md-2 control-label">Quantidade</label>
             <div class="col-md-2">
-                <input type="text" id="Quantidade" name="Quantidade" value="@Model.Quantidade" class="form-control" required/>
+                <input type="number" id="Quantidade" name="Quantidade" value="@Model.Quantidade" class="form-control" required />
             </div>
         </div>
         <div class="form-actions" style="">
@@ -49,19 +49,21 @@
     }
 </div>
 @section Scripts{
-    <script src="dist/jquery.inputmask.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
     <script>
         $(document).ready(function () {
+
+            $('.money').mask('000.000.000.000.000,00', { reverse: true });
 
             if ($('#Quantidade').val() > 0) {
                 $('#Valor').prop("disabled", true);
             }
-            if ($('#Valor').val() > 0) {
+            if ($('#Valor').val() != '') {
                 $('#Quantidade').prop("disabled", true);
             }
             $('#Valor').bind('input', function () {
 
-                if ($(this).val() > 0) {
+                if ($(this).val() != '') {
                     $('#Quantidade').prop("disabled", true);
                 }
                 else {
