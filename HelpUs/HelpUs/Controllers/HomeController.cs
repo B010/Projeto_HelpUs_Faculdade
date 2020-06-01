@@ -38,8 +38,17 @@ namespace HelpUs.Controllers
 
             var viewModel = new HomeViewModel()
             {
-                CasoDetalhes = caso
+                CasoDetalhes = caso,
+                
             };
+            if (caso.ValorTotal != null)
+                viewModel.ValorTotal = caso.ValorTotal;
+            else
+                viewModel.ValorTotal = 0;
+            if (caso.Valor != null)
+                viewModel.Valor = caso.Valor;
+            else
+                viewModel.Valor = 0;
             return View(viewModel);
         }
 

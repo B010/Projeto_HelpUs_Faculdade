@@ -3,7 +3,7 @@
 
 <div class="row">
     @using (Html.BeginForm("Create", "Casos", FormMethod.Post, new { @class = "form-horizontal" }))
-    {
+    {        
         <div class="form-group">
             <label class="col-md-2 control-label">Titulo</label>
             <div class="col-md-4">
@@ -23,7 +23,7 @@
         <div class="form-group">
             <label class="col-md-2 control-label">Descrição</label>
             <div class="col-md-10">
-                <textarea id="DescricaoCaso" name="DescricaoCaso" class="form-control" rows="4" style="max-width:90%;" maxlength="500" required>@Model.DescricaoCaso</textarea>
+                <textarea id="DescricaoCaso" name="DescricaoCaso" class="form-control" rows="4" style="max-width:90%" required>@Model.DescricaoCaso</textarea>
             </div>
         </div>
 
@@ -37,31 +37,29 @@
 
             <label class="col-md-2 control-label">Quantidade</label>
             <div class="col-md-2">
-                <input type="number" id="Quantidade" name="Quantidade" value="@Model.Quantidade" class="form-control" required />
+                <input type="text" id="Quantidade" name="Quantidade" value="@Model.Quantidade" class="form-control" required />
             </div>
         </div>
         <div class="form-actions" style="">
-            <button id='btnSubmit' class='btn btn-success' type='submit'><i class='fa fa-save'></i> Salvar</button>
+            <button id='btnSubmit' class='btn btn-success' type='submit'><i class='fa fa-save'></i> Update</button>
             <a href='' onclick='history.go(-1); return false;' class='btn btn-default'> Cancelar</a>
         </div>
     }
 </div>
 @section Scripts{
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+    <script src="dist/jquery.inputmask.js"></script>
     <script>
         $(document).ready(function () {
-
-            $('.money').mask('000.000.000.000.000,00', { reverse: true });
 
             if ($('#Quantidade').val() > 0) {
                 $('#Valor').prop("disabled", true);
             }
-            if ($('#Valor').val() != '') {
+            if ($('#Valor').val() > 0) {
                 $('#Quantidade').prop("disabled", true);
             }
             $('#Valor').bind('input', function () {
 
-                if ($(this).val() != '') {
+                if ($(this).val() > 0) {
                     $('#Quantidade').prop("disabled", true);
                 }
                 else {
