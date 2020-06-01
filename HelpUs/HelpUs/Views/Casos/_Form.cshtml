@@ -1,0 +1,38 @@
+﻿@model HelpUs.Models.CasosViewModel
+
+<div class="form-group">
+    <label class="col-md-2 control-label">Titulo</label>
+    <div class="col-md-4">
+        <input type="text" id="TituloCaso" name="TituloCaso" value="@Model.TituloCaso" class="form-control" required />
+    </div>
+    <label class="col-md-2 control-label">Categorias</label>
+    <div class="col-md-3">
+        <select id="IdCategoria" name="IdCategoria" class="form-control">
+            @foreach (var cat in Model.CategoriasSelect)
+            {
+                <option value="@cat.Value">@cat.Text</option>
+            }
+        </select>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-2 control-label">Descrição</label>
+    <div class="col-md-10">
+        <textarea id="DescricaoCaso" name="DescricaoCaso" class="form-control" rows="4" style="max-width:90%" required>@Model.DescricaoCaso</textarea>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-2 control-label">Valor</label>
+    <div class="col-md-3">
+        <input type="text" id="Valor" name="Valor" value="@Model.Valor" class="form-control money" required />
+    </div>
+
+    <div class="col-md-1"></div>
+
+    <label class="col-md-2 control-label">Quantidade</label>
+    <div class="col-md-2">
+        <input type="text" id="Quantidade" name="Quantidade" value="@Model.Quantidade" class="form-control" required />
+    </div>
+</div>
