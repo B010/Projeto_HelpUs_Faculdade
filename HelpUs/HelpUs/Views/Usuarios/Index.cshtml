@@ -1,27 +1,25 @@
-﻿@model HelpUs.Models.HomeViewModel
+﻿@model HelpUs.Models.UsuariosViewModel
 @{
-    ViewBag.Title = "Casos";
+    ViewBag.Title = "Usuarios";
 }
-    <input type="hidden" id="IdCaso" name="IdCaso" value="@Model.IdCaso" />
+    <input type="hidden" id="IdCaso" name="IdCaso" value="@Model.IdLogin" />
     <div id="main">
         <div class="col-md-12">
             <table id="table" class="table table-striped display">
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Titulo</th>
-                        <th>Descrição</th>
-                        <th>Categoria</th>
+                        <th>Usuario</th>
+                        <th>Nome da Empresa</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var el in Model.ListCasos)
+                    @foreach (var el in Model.ListUsuarios)
                     {
                         <tr>
-                            <td><a class="btn btn-primary" href="@Url.Action("Edit", new { id = el.IdCaso })"><i class="fa fa-pencil"></i></a> <a class="btn btn-danger delete" data-id="@el.IdCaso" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash"></i></a></td>
-                            <td>@el.TituloCaso</td>
-                            <td>@el.DescricaoCaso</td>
-                            <td>@el.Categorias.NomeCategoria</td>
+                            <td><a class="btn btn-primary" href="@Url.Action("Edit", new { id = el.IdLogin })"><i class="fa fa-pencil"></i></a> <a class="btn btn-danger delete" data-id="@el.IdLogin" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash"></i></a></td>
+                            <td>@el.Usuario</td>
+                            <td>@el.Empresas.NomeEmpresa</td>
                         </tr>
                     }
                 </tbody>
@@ -39,8 +37,8 @@
                         <H5>Você Realmente quer deletar este caso?</H5>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                         <a id="deleteButtomModal" class="btn btn-danger" href=""><i>Deletar</i></a>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                     </div>
                 </div>
 
@@ -62,7 +60,7 @@
                     {
                         text: 'Novo',
                         action: function (e, dt, node, config) {
-                            window.location.href = '/Casos/New';
+                            window.location.href = '/Usuarios/New';
                         }
                     }
                 ],
@@ -75,7 +73,7 @@
             });
 
             $('.delete').on('click', function () {
-                $("#deleteButtomModal").attr("href", "/Casos/Delete/" + $(this).data('id'))
+                $("#deleteButtomModal").attr("href", "/Usuarios/Delete/" + $(this).data('id'))
                 console.log($("#deleteButtomModal").attr("href"));
             })
         });

@@ -50,8 +50,9 @@ namespace HelpUs.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(CasosViewModel model)
+        public ActionResult Create(CasosViewModel model, string valor)
         {
+            model.Valor = Convert.ToDecimal(valor);
             if (string.IsNullOrEmpty(model.TituloCaso))
             {
                 return RedirectToAction(nameof(New), new { model });
