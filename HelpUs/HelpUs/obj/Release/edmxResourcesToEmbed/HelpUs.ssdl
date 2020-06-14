@@ -13,7 +13,7 @@
     <Property Name="ValorTotal" Type="decimal" Precision="19" Scale="2" />
     <Property Name="Valor" Type="decimal" Precision="19" Scale="2" />
     <Property Name="TituloCaso" Type="varchar" MaxLength="35" Nullable="false" />
-    <Property Name="DescricaoCaso" Type="varchar" MaxLength="50" />
+    <Property Name="DescricaoCaso" Type="varchar" MaxLength="500" />
     <Property Name="Ativo" Type="bit" Nullable="false" />
     <Property Name="Avaliacao" Type="bit" />
   </EntityType>
@@ -77,7 +77,7 @@
     <Property Name="Setor" Type="varchar" MaxLength="25" Nullable="false" />
     <Property Name="CPF" Type="varchar" MaxLength="11" Nullable="false" />
   </EntityType>
-  <Association Name="FK__Casos__IdCategor__5535A963">
+  <Association Name="FK__Casos__IdCategor__2F10007B">
     <End Role="Categorias" Type="Self.Categorias" Multiplicity="0..1" />
     <End Role="Casos" Type="Self.Casos" Multiplicity="*" />
     <ReferentialConstraint>
@@ -89,7 +89,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Casos__IdEmpresa__5629CD9C">
+  <Association Name="FK__Casos__IdEmpresa__300424B4">
     <End Role="Empresas" Type="Self.Empresas" Multiplicity="0..1" />
     <End Role="Casos" Type="Self.Casos" Multiplicity="*" />
     <ReferentialConstraint>
@@ -101,7 +101,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Casos__IdOutraEm__571DF1D5">
+  <Association Name="FK__Casos__IdOutraEm__30F848ED">
     <End Role="OutrasEmpresas" Type="Self.OutrasEmpresas" Multiplicity="0..1" />
     <End Role="Casos" Type="Self.Casos" Multiplicity="*" />
     <ReferentialConstraint>
@@ -113,7 +113,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Login__IdEmpresa__59FA5E80">
+  <Association Name="FK__Login__IdEmpresa__33D4B598">
     <End Role="Empresas" Type="Self.Empresas" Multiplicity="0..1" />
     <End Role="Login" Type="Self.Login" Multiplicity="*" />
     <ReferentialConstraint>
@@ -125,7 +125,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Login__IdOutraEm__5AEE82B9">
+  <Association Name="FK__Login__IdOutraEm__34C8D9D1">
     <End Role="OutrasEmpresas" Type="Self.OutrasEmpresas" Multiplicity="0..1" />
     <End Role="Login" Type="Self.Login" Multiplicity="*" />
     <ReferentialConstraint>
@@ -137,7 +137,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PessoasSo__IdEmp__4E88ABD4">
+  <Association Name="FK__PessoasSo__IdEmp__286302EC">
     <End Role="Empresas" Type="Self.Empresas" Multiplicity="0..1" />
     <End Role="PessoasSolicitantes" Type="Self.PessoasSolicitantes" Multiplicity="*" />
     <ReferentialConstraint>
@@ -149,7 +149,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PessoasSo__IdOut__4F7CD00D">
+  <Association Name="FK__PessoasSo__IdOut__29572725">
     <End Role="OutrasEmpresas" Type="Self.OutrasEmpresas" Multiplicity="0..1" />
     <End Role="PessoasSolicitantes" Type="Self.PessoasSolicitantes" Multiplicity="*" />
     <ReferentialConstraint>
@@ -168,31 +168,31 @@
     <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OutrasEmpresas" EntityType="Self.OutrasEmpresas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PessoasSolicitantes" EntityType="Self.PessoasSolicitantes" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Casos__IdCategor__5535A963" Association="Self.FK__Casos__IdCategor__5535A963">
+    <AssociationSet Name="FK__Casos__IdCategor__2F10007B" Association="Self.FK__Casos__IdCategor__2F10007B">
       <End Role="Categorias" EntitySet="Categorias" />
       <End Role="Casos" EntitySet="Casos" />
     </AssociationSet>
-    <AssociationSet Name="FK__Casos__IdEmpresa__5629CD9C" Association="Self.FK__Casos__IdEmpresa__5629CD9C">
+    <AssociationSet Name="FK__Casos__IdEmpresa__300424B4" Association="Self.FK__Casos__IdEmpresa__300424B4">
       <End Role="Empresas" EntitySet="Empresas" />
       <End Role="Casos" EntitySet="Casos" />
     </AssociationSet>
-    <AssociationSet Name="FK__Casos__IdOutraEm__571DF1D5" Association="Self.FK__Casos__IdOutraEm__571DF1D5">
+    <AssociationSet Name="FK__Casos__IdOutraEm__30F848ED" Association="Self.FK__Casos__IdOutraEm__30F848ED">
       <End Role="OutrasEmpresas" EntitySet="OutrasEmpresas" />
       <End Role="Casos" EntitySet="Casos" />
     </AssociationSet>
-    <AssociationSet Name="FK__Login__IdEmpresa__59FA5E80" Association="Self.FK__Login__IdEmpresa__59FA5E80">
+    <AssociationSet Name="FK__Login__IdEmpresa__33D4B598" Association="Self.FK__Login__IdEmpresa__33D4B598">
       <End Role="Empresas" EntitySet="Empresas" />
       <End Role="Login" EntitySet="Login" />
     </AssociationSet>
-    <AssociationSet Name="FK__Login__IdOutraEm__5AEE82B9" Association="Self.FK__Login__IdOutraEm__5AEE82B9">
+    <AssociationSet Name="FK__Login__IdOutraEm__34C8D9D1" Association="Self.FK__Login__IdOutraEm__34C8D9D1">
       <End Role="OutrasEmpresas" EntitySet="OutrasEmpresas" />
       <End Role="Login" EntitySet="Login" />
     </AssociationSet>
-    <AssociationSet Name="FK__PessoasSo__IdEmp__4E88ABD4" Association="Self.FK__PessoasSo__IdEmp__4E88ABD4">
+    <AssociationSet Name="FK__PessoasSo__IdEmp__286302EC" Association="Self.FK__PessoasSo__IdEmp__286302EC">
       <End Role="Empresas" EntitySet="Empresas" />
       <End Role="PessoasSolicitantes" EntitySet="PessoasSolicitantes" />
     </AssociationSet>
-    <AssociationSet Name="FK__PessoasSo__IdOut__4F7CD00D" Association="Self.FK__PessoasSo__IdOut__4F7CD00D">
+    <AssociationSet Name="FK__PessoasSo__IdOut__29572725" Association="Self.FK__PessoasSo__IdOut__29572725">
       <End Role="OutrasEmpresas" EntitySet="OutrasEmpresas" />
       <End Role="PessoasSolicitantes" EntitySet="PessoasSolicitantes" />
     </AssociationSet>

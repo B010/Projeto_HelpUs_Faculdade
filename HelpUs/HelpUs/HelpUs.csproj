@@ -133,6 +133,7 @@
       <DependentUpon>HelpUs.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\CasosController.cs" />
+    <Compile Include="Controllers\EmpresasController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Empresas.cs">
@@ -159,6 +160,8 @@
     <Compile Include="Login.cs">
       <DependentUpon>HelpUs.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmpresasViewModel.cs" />
+    <Compile Include="Models\UsuariosViewModel.cs" />
     <Compile Include="Models\CasosViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="OutrasEmpresas.cs">
@@ -244,7 +247,9 @@
     <Content Include="Views\Usuarios\Edit.cshtml" />
     <Content Include="Views\Usuarios\Index.cshtml" />
     <Content Include="Views\Usuarios\New.cshtml" />
-    <Content Include="Views\Usuarios\_Form.cshtml" />
+    <Content Include="Views\Empresas\Edit.cshtml" />
+    <Content Include="Views\Empresas\Index.cshtml" />
+    <Content Include="Views\Empresas\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -13,7 +13,9 @@ namespace HelpUs.Controllers
         {
             DbHelpUsEntities db = new DbHelpUsEntities();
 
-            List<Casos> casos = db.Casos.ToList();
+            List<Casos> casos = db.Casos.Where(x => 
+                                                x.Quantidade != x.QuantidadeTotal 
+                                                || x.Valor != x.ValorTotal).ToList();
 
             HomeViewModel model = new HomeViewModel()
             {
@@ -25,8 +27,6 @@ namespace HelpUs.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 

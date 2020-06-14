@@ -23,52 +23,39 @@ namespace HelpUs.Controllers
             return View(model);
         }
 
-        public ActionResult New(CasosViewModel model)
+        public ActionResult New(UsuariosViewModel model)
         {
             DbHelpUsEntities db = new DbHelpUsEntities();
-            List<Categorias> categorias = db.Categorias.ToList();
-            IDictionary<int, string> combocategorias = new Dictionary<int, string>();
+            List<Empresas> empresas = db.Empresas.ToList();
+            IDictionary<int, string> comboEmpresas = new Dictionary<int, string>();
 
-            foreach (var cat in categorias)
+            foreach (var emp in empresas)
             {
-                combocategorias.Add(cat.IdCategoria, cat.NomeCategoria);
+                comboEmpresas.Add(emp.IdEmpresa, emp.NomeEmpresa);
             }
 
-            CasosViewModel viewModel = new CasosViewModel()
+            UsuariosViewModel viewModel = new UsuariosViewModel()
             {
-                DescricaoCaso = model.DescricaoCaso,
-                TituloCaso = model.TituloCaso,
-                Quantidade = model.Quantidade,
-                QuantidadeTotal = model.QuantidadeTotal,
-                Valor = model.Valor,
-                ValorTotal = model.ValorTotal,
-                IdCategoria = model.IdCategoria,
-                CategoriasSelect = combocategorias.AsSelectListItem()
+                Usuario = model.Usuario,
+                Senha = model.Senha,
+                IdEmpresa = model.IdEmpresa,
+                EmpresasSelect = comboEmpresas.AsSelectListItem()
             };
 
             return View(viewModel);
         }
 
         [HttpPost]
-        public ActionResult Create(CasosViewModel model, string valor)
+        public ActionResult Create(UsuariosViewModel model)
         {
-            model.Valor = Convert.ToDecimal(valor);
-            if (string.IsNullOrEmpty(model.TituloCaso))
-            {
-                return RedirectToAction(nameof(New), new { model });
-            }
-            if (model.Quantidade == null && model.Valor == null)
-            {
-                return RedirectToAction(nameof(New), new { model });
-            }
-            if (string.IsNullOrEmpty(model.DescricaoCaso))
+            if (model.IdEmpresa == 0)
             {
                 return RedirectToAction(nameof(New), new { model });
             }
 
             DbHelpUsEntities db = new DbHelpUsEntities();
 
-            db.Casos.Add(new Casos { DescricaoCaso = model.DescricaoCaso, Quantidade = model.Quantidade, Valor = model.Valor, IdCategoria = model.IdCategoria, TituloCaso = model.TituloCaso, Ativo = true, IdEmpresa = 1, Avaliacao = false, QuantidadeTotal = 0, ValorTotal = 0 });
+            db.Login.Add(new Login { IdEmpresa = model.IdEmpresa, Usuario = model.Usuario, Senha = model.Senha, TipoUsuario = true });
             db.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
@@ -76,57 +63,43 @@ namespace HelpUs.Controllers
         public ActionResult Edit(int id, string error)
         {
             DbHelpUsEntities db = new DbHelpUsEntities();
-            Casos casos = db.Casos.Where(x => x.IdCaso == id).FirstOrDefault();
+            Login login = db.Login.Where(x => x.IdLogin == id).FirstOrDefault();
 
-            List<Categorias> categorias = db.Categorias.ToList();
+            List<Empresas> empresas = db.Empresas.ToList();
 
-            IDictionary<int, string> combocategorias = new Dictionary<int, string>();
+            IDictionary<int, string> comboEmpresas = new Dictionary<int, string>();
 
-            foreach (var cat in categorias)
+            foreach (var cat in empresas)
             {
-                combocategorias.Add(cat.IdCategoria, cat.NomeCategoria);
+                comboEmpresas.Add(cat.IdEmpresa, cat.NomeEmpresa);
             }
 
-            CasosViewModel model = new CasosViewModel()
+            UsuariosViewModel model = new UsuariosViewModel()
             {
-                IdCaso = id,
-                DescricaoCaso = casos.DescricaoCaso,
-                TituloCaso = casos.TituloCaso,
-                Quantidade = casos.Quantidade,
-                QuantidadeTotal = casos.QuantidadeTotal,
-                Valor = casos.Valor,
-                ValorTotal = casos.ValorTotal,
-                IdCategoria = casos.IdCategoria,
-                CategoriasSelect = combocategorias.AsSelectListItem()
+                IdLogin = id,
+                Usuario = login.Usuario,
+                Senha = login.Senha,
+                IdEmpresa = login.IdEmpresa,
+                EmpresasSelect = comboEmpresas.AsSelectListItem()
             };
 
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Update(CasosViewModel model)
+        public ActionResult Update(UsuariosViewModel model)
         {
-            if (string.IsNullOrEmpty(model.TituloCaso))
+            if (model.IdEmpresa == 0)
             {
-                return RedirectToAction(nameof(Edit), new { id = model.IdCaso });
-            }
-            if (model.Quantidade == null && model.Valor == null)
-            {
-                return RedirectToAction(nameof(Edit), new { id = model.IdCaso });
-            }
-            if (string.IsNullOrEmpty(model.DescricaoCaso))
-            {
-                return RedirectToAction(nameof(Edit), new { id = model.IdCaso });
+                return RedirectToAction(nameof(New), new { model });
             }
 
             DbHelpUsEntities db = new DbHelpUsEntities();
-            var caso = db.Casos.First(a => a.IdCaso == model.IdCaso);
+            var login = db.Login.First(a => a.IdLogin == model.IdLogin);
 
-            caso.IdCategoria = model.IdCategoria;
-            caso.Quantidade = model.Quantidade;
-            caso.Valor = model.Valor;
-            caso.TituloCaso = model.TituloCaso;
-            caso.DescricaoCaso = model.DescricaoCaso;
+            login.Usuario = model.Usuario;
+            login.Senha = model.Senha;
+            login.IdEmpresa = model.IdEmpresa;
 
             db.SaveChanges();
             return RedirectToAction(nameof(Index));
@@ -135,7 +108,7 @@ namespace HelpUs.Controllers
         public ActionResult Delete(int id)
         {
             DbHelpUsEntities db = new DbHelpUsEntities();
-            db.Casos.Remove(db.Casos.Single(a => a.IdCaso == id));
+            db.Login.Remove(db.Login.Single(a => a.IdLogin == id));
             db.SaveChanges();
 
             return RedirectToAction(nameof(Index));

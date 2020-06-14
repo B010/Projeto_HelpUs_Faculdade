@@ -13,7 +13,7 @@
     <Property Name="ValorTotal" Type="Decimal" Precision="19" Scale="2" />
     <Property Name="Valor" Type="Decimal" Precision="19" Scale="2" />
     <Property Name="TituloCaso" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="DescricaoCaso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DescricaoCaso" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <Property Name="Ativo" Type="Boolean" Nullable="false" />
     <Property Name="Avaliacao" Type="Boolean" />
     <NavigationProperty Name="Categorias" Relationship="Self.FK__Casos__IdCategor__5535A963" FromRole="Casos" ToRole="Categorias" />

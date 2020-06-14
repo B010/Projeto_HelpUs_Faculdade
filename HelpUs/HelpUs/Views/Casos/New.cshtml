@@ -7,7 +7,7 @@
         <div class="form-group">
             <label class="col-md-2 control-label">Título</label>
             <div class="col-md-4">
-                <input type="text" id="TituloCaso" name="TituloCaso" value="@Model.TituloCaso" class="form-control" required />
+                <input type="text" id="TituloCaso" maxlength="35" name="TituloCaso" value="@Model.TituloCaso" class="form-control" required />
             </div>
             <label class="col-md-2 control-label">Categorias</label>
             <div class="col-md-3">
@@ -23,7 +23,7 @@
         <div class="form-group">
             <label class="col-md-2 control-label">Descrição</label>
             <div class="col-md-10">
-                <textarea id="DescricaoCaso" name="DescricaoCaso" class="form-control" rows="4" style="max-width:90%;" maxlength="500" required>@Model.DescricaoCaso</textarea>
+                <textarea id="DescricaoCaso" name="DescricaoCaso" maxlength="500" class="form-control" rows="4" style="max-width:90%;" maxlength="500" required>@Model.DescricaoCaso</textarea>
             </div>
         </div>
 
@@ -55,8 +55,9 @@
 
             if ($('#Quantidade').val() > 0) {
                 $('#Valor').prop("disabled", true);
+                $('#Valor').val('');
             }
-            if ($('#Valor').val() != '') {
+            else if ($('#Valor').val() != '') {
                 $('#Quantidade').prop("disabled", true);
             }
             $('#Valor').bind('input', function () {
