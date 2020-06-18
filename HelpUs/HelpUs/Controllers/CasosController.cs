@@ -104,8 +104,9 @@ namespace HelpUs.Controllers
         }
 
         [HttpPost]
-        public ActionResult Update(CasosViewModel model)
+        public ActionResult Update(CasosViewModel model, string valor)
         {
+            model.Valor = Convert.ToDecimal(valor);
             if (string.IsNullOrEmpty(model.TituloCaso))
             {                
                 return RedirectToAction(nameof(Edit), new { id = model.IdCaso });

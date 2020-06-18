@@ -1,18 +1,41 @@
-﻿@model HelpUs.Models.UsuariosViewModel
+﻿@model HelpUs.Models.EmpresasViewModel
 
 
 <div class="row">
-    @using (Html.BeginForm("Create", "Usuarios", FormMethod.Post, new { @class = "form-horizontal" }))
-    {        
+    @using (Html.BeginForm("Create", "Empresas", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
         <div class="form-group">
-            <label class="col-md-2 control-label">Usuario</label>
-            <div class="col-md-3">
-                <input type="text" id="Usuario" name="Usuario" value="@Model.Usuario" class="form-control" required />
+            <label class="col-md-2 control-label">Nome da Empresa</label>
+            <div class="col-md-4">
+                <input type="text" id="NomeEmpresa" name="NomeEmpresa" value="@Model.NomeEmpresa" class="form-control" required />
             </div>
-            <label class="col-md-2 control-label">Empresas</label>
+
+            <label class="col-md-2 control-label">Email da Empresa</label>
+            <div class="col-md-4">
+                <input type="text" id="EmailEmpresa" name="EmailEmpresa" value="@Model.EmailEmpresa" class="form-control" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">CNPJ</label>
             <div class="col-md-3">
-                <select id="IdEmpresa" name="IdEmpresa" class="form-control">
-                    @foreach (var cat in Model.EmpresasSelect)
+                <input type="text" id="Cnpj" name="Cnpj" value="@Model.Cnpj" class="form-control cnpj" required />
+            </div>
+            <span class="col-md-1"></span>
+            <label class="col-md-2 control-label">CEP</label>
+            <div class="col-md-3">
+                <input type="text" id="CEP" name="CEP" value="@Model.CEP" class="form-control cep" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Telefone</label>
+            <div class="col-md-3">
+                <input type="text" id="TelefoneEmpresa" name="TelefoneEmpresa" value="@Model.TelefoneEmpresa" class="form-control tel" required />
+            </div>
+            <span class="col-md-1"></span>
+            <label class="col-md-2 control-label">Estado</label>
+            <div class="col-md-3">
+                <select id="UfEmpresa" name="UfEmpresa" class="form-control">
+                    @foreach (var cat in Model.UfEmpresaSelect)
                     {
                         <option value="@cat.Value">@cat.Text</option>
                     }
@@ -20,14 +43,33 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-2 control-label">Senha</label>
+            <label class="col-md-2 control-label">Cidade</label>
             <div class="col-md-3">
-                <input type="text" id="Senha" name="Senha" value="@Model.Senha" class="form-control" required />
+                <input type="text" id="CidadeEmpresa" name="CidadeEmpresa" value="@Model.CidadeEmpresa" class="form-control" required />
             </div>
         </div>
         <div class="form-actions" style="">
-            <button id='btnSubmit' class='btn btn-success' type='submit'><i class='fa fa-save'></i> Update</button>
+            <button id='btnSubmit' class='btn btn-success' type='submit'><i class='fa fa-save'></i> Cadastrar</button>
             <a href='' onclick='history.go(-1); return false;' class='btn btn-default'> Cancelar</a>
         </div>
     }
 </div>
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".cep").mask("99999-999");
+            $(".cnpj").mask("99.999.999/9999-99");
+            var behavior = function (val) {
+                return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+            },
+                options = {
+                    onKeyPress: function (val, e, field, options) {
+                        field.mask(behavior.apply({}, arguments), options);
+                    }
+                };
+
+            $('.tel').mask(behavior, options);
+        });
+    </script>
+}

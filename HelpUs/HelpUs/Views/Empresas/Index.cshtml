@@ -1,25 +1,29 @@
-﻿@model HelpUs.Models.UsuariosViewModel
+﻿@model HelpUs.Models.EmpresasViewModel
 @{
-    ViewBag.Title = "Usuarios";
+    ViewBag.Title = "Empresas";
 }
-    <input type="hidden" id="IdCaso" name="IdCaso" value="@Model.IdLogin" />
+    <input type="hidden" id="IdCaso" name="IdCaso" value="@Model.IdEmpresa" />
     <div id="main">
         <div class="col-md-12">
             <table id="table" class="table table-striped display">
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Usuario</th>
                         <th>Nome da Empresa</th>
+                        <th>Email da Empresa</th>
+                        <th>CNPJ</th>
+                        <th>Telefone da Empresa</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var el in Model.ListUsuarios)
+                    @foreach (var el in Model.ListEmpresas)
                     {
                         <tr>
-                            <td><a class="btn btn-primary" href="@Url.Action("Edit", new { id = el.IdLogin })"><i class="fa fa-pencil"></i></a> <a class="btn btn-danger delete" data-id="@el.IdLogin" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash"></i></a></td>
-                            <td>@el.Usuario</td>
-                            <td>@el.Empresas.NomeEmpresa</td>
+                            <td><a class="btn btn-primary" href="@Url.Action("Edit", new { id = el.IdEmpresa })"><i class="fa fa-pencil"></i></a> <a class="btn btn-danger delete" data-id="@el.IdEmpresa" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash"></i></a></td>
+                            <td>@el.NomeEmpresa</td>
+                            <td>@el.EmailEmpresa</td>
+                            <td>@el.Cnpj</td>
+                            <td>@el.TelefoneEmpresa</td>
                         </tr>
                     }
                 </tbody>
@@ -60,7 +64,7 @@
                     {
                         text: 'Novo',
                         action: function (e, dt, node, config) {
-                            window.location.href = '/Usuarios/New';
+                            window.location.href = '/Empresas/New';
                         }
                     }
                 ],
@@ -68,12 +72,16 @@
                     { "bSortable": false, "aTargets": [0] },
                     { "bSearchable": false, "aTargets": [0] }
                 ],
-                order: [[1,"asc"]]
+                order: [[1, "asc"]],
+                oLanguage: {
+                    sUrl: "//cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese-Brasil.json"
+                },
+                responsive: true
 
             });
 
             $('.delete').on('click', function () {
-                $("#deleteButtomModal").attr("href", "/Usuarios/Delete/" + $(this).data('id'))
+                $("#deleteButtomModal").attr("href", "/Empresas/Delete/" + $(this).data('id'))
                 console.log($("#deleteButtomModal").attr("href"));
             })
         });

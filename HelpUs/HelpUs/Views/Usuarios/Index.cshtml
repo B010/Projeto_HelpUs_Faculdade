@@ -34,7 +34,7 @@
                         <h4 class="modal-title">Delete</h4>
                     </div>
                     <div class="modal-body">
-                        <H5>Você Realmente quer deletar este caso?</H5>
+                        <H5>Você Realmente quer deletar este Usuario?</H5>
                     </div>
                     <div class="modal-footer">
                         <a id="deleteButtomModal" class="btn btn-danger" href=""><i>Deletar</i></a>
@@ -68,7 +68,11 @@
                     { "bSortable": false, "aTargets": [0] },
                     { "bSearchable": false, "aTargets": [0] }
                 ],
-                order: [[1,"asc"]]
+                order: [[1, "asc"]],
+                oLanguage: {
+                    sUrl: "//cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese-Brasil.json"
+                },
+                responsive: true
 
             });
 

@@ -13,7 +13,7 @@ namespace HelpUs.Controllers
         {
             DbHelpUsEntities db = new DbHelpUsEntities();
 
-            List<Empresas> empresas = db.Empresas.ToList();
+            List<Empresas> empresas = db.Empresas.Where(x => x.ativo == true).ToList();
 
             EmpresasViewModel model = new EmpresasViewModel()
             {
@@ -23,83 +23,146 @@ namespace HelpUs.Controllers
             return View(model);
         }
 
-        public ActionResult New(UsuariosViewModel model)
+        public ActionResult New(EmpresasViewModel model)
         {
-            DbHelpUsEntities db = new DbHelpUsEntities();
-            List<Empresas> empresas = db.Empresas.ToList();
-            IDictionary<int, string> comboEmpresas = new Dictionary<int, string>();
-
-            foreach (var emp in empresas)
+            #region Estados
+            var estados = new string[,]
             {
-                comboEmpresas.Add(emp.IdEmpresa, emp.NomeEmpresa);
+                { "AC"},
+                { "AL"},
+                { "AP"},
+                { "AM"},
+                { "BA"},
+                { "CE"},
+                { "DF"},
+                { "ES"},
+                { "GO"},
+                { "MA" },
+                { "MT"},
+                { "MS" },
+                { "MG"},
+                { "PA"},
+                { "PB"},
+                { "PR"},
+                { "PE"},
+                { "PI"},
+                { "RJ"},
+                { "RN"},
+                { "RS" },
+                { "RO"},
+                { "RR"},
+                { "SC" },
+                { "SP"},
+                { "SE"},
+                { "TO" }
+            };
+            #endregion
+
+            IDictionary<string, string> comboEstados = new Dictionary<string, string>();
+
+            foreach (var est in estados)
+            {
+                comboEstados.Add(est, est);
             }
 
-            UsuariosViewModel viewModel = new UsuariosViewModel()
+            EmpresasViewModel viewModel = new EmpresasViewModel()
             {
-                Usuario = model.Usuario,
-                Senha = model.Senha,
                 IdEmpresa = model.IdEmpresa,
-                EmpresasSelect = comboEmpresas.AsSelectListItem()
+                CEP = model.CEP,
+                CidadeEmpresa = model.CidadeEmpresa,
+                Cnpj = model.Cnpj,
+                EmailEmpresa = model.EmailEmpresa,
+                NomeEmpresa = model.NomeEmpresa,
+                TelefoneEmpresa = model.TelefoneEmpresa,
+                UfEmpresa = model.UfEmpresa,
+                UfEmpresaSelect = comboEstados.AsSelectListItem()
             };
-
             return View(viewModel);
         }
 
         [HttpPost]
-        public ActionResult Create(UsuariosViewModel model)
+        public ActionResult Create(EmpresasViewModel model, string TelefoneEmpresa)
         {
-            if (model.IdEmpresa == 0)
-            {
-                return RedirectToAction(nameof(New), new { model });
-            }
-
             DbHelpUsEntities db = new DbHelpUsEntities();
 
-            db.Login.Add(new Login { IdEmpresa = model.IdEmpresa, Usuario = model.Usuario, Senha = model.Senha, TipoUsuario = true });
+            db.Empresas.Add(new Empresas { UfEmpresa = model.UfEmpresa, TelefoneEmpresa = model.TelefoneEmpresa, NomeEmpresa = model.NomeEmpresa, EmailEmpresa = model.EmailEmpresa, Cnpj = model.Cnpj, CEP = model.CEP, CidadeEmpresa = model.CidadeEmpresa, ativo = true, DataDisativacao = null });
             db.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
 
         public ActionResult Edit(int id, string error)
         {
+            #region Estados
+            var estados = new string[,]
+            {
+                { "AC"},
+                { "AL"},
+                { "AP"},
+                { "AM"},
+                { "BA"},
+                { "CE"},
+                { "DF"},
+                { "ES"},
+                { "GO"},
+                { "MA" },
+                { "MT"},
+                { "MS" },
+                { "MG"},
+                { "PA"},
+                { "PB"},
+                { "PR"},
+                { "PE"},
+                { "PI"},
+                { "RJ"},
+                { "RN"},
+                { "RS" },
+                { "RO"},
+                { "RR"},
+                { "SC" },
+                { "SP"},
+                { "SE"},
+                { "TO" }
+            };
+            #endregion
+
             DbHelpUsEntities db = new DbHelpUsEntities();
-            Login login = db.Login.Where(x => x.IdLogin == id).FirstOrDefault();
+            Empresas empresas = db.Empresas.Where(x => x.IdEmpresa == id).FirstOrDefault();
 
-            List<Empresas> empresas = db.Empresas.ToList();
-
-            IDictionary<int, string> comboEmpresas = new Dictionary<int, string>();
-
-            foreach (var cat in empresas)
+            
+            IDictionary<string, string> comboEstados = new Dictionary<string, string>();
+            foreach (var est in estados)
             {
-                comboEmpresas.Add(cat.IdEmpresa, cat.NomeEmpresa);
+                comboEstados.Add(est, est);
             }
-
-            UsuariosViewModel model = new UsuariosViewModel()
+            EmpresasViewModel model = new EmpresasViewModel()
             {
-                IdLogin = id,
-                Usuario = login.Usuario,
-                Senha = login.Senha,
-                IdEmpresa = login.IdEmpresa,
-                EmpresasSelect = comboEmpresas.AsSelectListItem()
+                IdEmpresa = empresas.IdEmpresa,
+                CEP = empresas.CEP,
+                CidadeEmpresa = empresas.CidadeEmpresa,
+                Cnpj = empresas.Cnpj,
+                EmailEmpresa = empresas.EmailEmpresa,
+                NomeEmpresa = empresas.NomeEmpresa,
+                TelefoneEmpresa = empresas.TelefoneEmpresa,
+                UfEmpresa = empresas.UfEmpresa,
+                UfEmpresaSelect = comboEstados.AsSelectListItem()
             };
 
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Update(UsuariosViewModel model)
+        public ActionResult Update(EmpresasViewModel model, string TelefoneEmpresa)
         {
-            if (model.IdEmpresa == 0)
-            {
-                return RedirectToAction(nameof(New), new { model });
-            }
-
             DbHelpUsEntities db = new DbHelpUsEntities();
-            var login = db.Login.First(a => a.IdLogin == model.IdLogin);
+            var empresa = db.Empresas.First(a => a.IdEmpresa == model.IdEmpresa);
 
-            login.Usuario = model.Usuario;
-            login.Senha = model.Senha;
-            login.IdEmpresa = model.IdEmpresa;
+            empresa.CEP = model.CEP;
+            empresa.CidadeEmpresa = model.CidadeEmpresa;
+            empresa.Cnpj = model.Cnpj;
+            empresa.EmailEmpresa = model.EmailEmpresa;
+            empresa.NomeEmpresa = model.NomeEmpresa;
+            empresa.TelefoneEmpresa = model.TelefoneEmpresa;
+            empresa.UfEmpresa = model.UfEmpresa;
 
             db.SaveChanges();
             return RedirectToAction(nameof(Index));
@@ -108,9 +171,12 @@ namespace HelpUs.Controllers
         public ActionResult Delete(int id)
         {
             DbHelpUsEntities db = new DbHelpUsEntities();
-            db.Login.Remove(db.Login.Single(a => a.IdLogin == id));
-            db.SaveChanges();
+            var empresa = db.Empresas.First(a => a.IdEmpresa == id);
 
+            empresa.ativo = false;
+            empresa.DataDisativacao = DateTime.Now;
+
+            db.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
     }

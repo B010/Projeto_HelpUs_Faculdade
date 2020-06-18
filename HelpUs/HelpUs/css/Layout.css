@@ -36,7 +36,7 @@ body,
     }
 }
 
-/* Top Navigation */
+/* Navbar Superior */
 
 .top-nav {
     padding: 0 15px;
@@ -67,7 +67,7 @@ body,
         float: left;
         position: absolute;
         margin-top: 0;
-        /*border: 1px solid rgba(0,0,0,.15);*/
+        /*border: 1px solid red;*/
         border-top-left-radius: 0;
         border-top-right-radius: 0;
         background-color: #fff;
@@ -79,7 +79,7 @@ body,
             white-space: normal;
         }
 
-/* Side Navigation */
+/* NavBars Lateral */
 
 @media(min-width:768px) {
     .side-nav {
@@ -93,7 +93,7 @@ body,
         border-top: 1px rgba(0,0,0,.5) solid;
         overflow-y: auto;
         background-color: #222;
-        /*background-color: #5A6B7D;*/
+        /*background-color: red;*/
         bottom: 0;
         overflow-x: hidden;
         padding-bottom: 40px;
@@ -120,7 +120,7 @@ body,
         display: block;
         padding: 10px 15px 10px 38px;
         text-decoration: none;
-        /*color: #999;*/
+        /*color: red;*/
         color: #fff;
     }
 
