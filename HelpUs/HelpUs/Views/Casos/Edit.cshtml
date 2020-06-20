@@ -9,14 +9,21 @@
         <div class="form-group">
             <label class="col-md-2 control-label">Título</label>
             <div class="col-md-4">
-                <input maxlength="35" minlength="5" type="text" id="TituloCaso"  name="TituloCaso" value="@Model.TituloCaso" class="form-control" required />
+                <input maxlength="35" minlength="5" type="text" id="TituloCaso" name="TituloCaso" value="@Model.TituloCaso" class="form-control" required />
             </div>
             <label class="col-md-2 control-label">Categorias</label>
             <div class="col-md-3">
                 <select id="IdCategoria" name="IdCategoria" class="form-control">
                     @foreach (var cat in Model.CategoriasSelect)
                     {
-                        <option value="@cat.Value">@cat.Text</option>
+                        if (Convert.ToInt32(cat.Value) == Model.IdCategoria)
+                        {
+                            <option value="@cat.Value" selected="selected">@cat.Text</option>
+                        }
+                        else
+                        {
+                            <option value="@cat.Value">@cat.Text</option>
+                        }
                     }
                 </select>
             </div>
@@ -39,7 +46,7 @@
 
             <label class="col-md-2 control-label">Quantidade</label>
             <div class="col-md-2">
-                <input type="number" id="Quantidade" name="Quantidade" value="@Model.Quantidade" class="form-control"  required />
+                <input type="number" id="Quantidade" name="Quantidade" value="@Model.Quantidade" class="form-control" required />
             </div>
         </div>
         <div class="form-actions" style="">

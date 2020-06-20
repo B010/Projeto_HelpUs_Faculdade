@@ -16,7 +16,15 @@
                     <select id="IdEmpresa" name="IdEmpresa" class="form-control">
                         @foreach (var cat in Model.EmpresasSelect)
                         {
-                            <option value="@cat.Value">@cat.Text</option>
+                            if (Convert.ToInt32(cat.Value) == Model.IdEmpresa)
+                            {
+                                <option value="@cat.Value" selected="selected">@cat.Text</option>
+                            }
+                            else
+                            {
+                                <option value="@cat.Value">@cat.Text</option>
+                            }
+
                         }
                     </select>
                 </div>

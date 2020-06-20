@@ -13,8 +13,8 @@
             <div class="col-md-3">
                 <select id="IdEmpresa" name="IdEmpresa" class="form-control">
                     @foreach (var cat in Model.EmpresasSelect)
-                    {
-                        <option value="@cat.Value">@cat.Text</option>
+                    {                        
+                        <option value="@cat.Value">@cat.Text</option>                     
                     }
                 </select>
             </div>
@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="form-actions" style="">
-            <button id='btnSubmit' class='btn btn-success' type='submit'><i class='fa fa-save'></i> Cadastrar</button>
+            <button id='btnSubmit' class='btn btn-success' type='submit'><i class='fa fa-save'></i> Update</button>
             <a href='' onclick='history.go(-1); return false;' class='btn btn-default'> Cancelar</a>
         </div>
     }
