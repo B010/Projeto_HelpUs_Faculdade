@@ -13,7 +13,19 @@ namespace HelpUs.Controllers
         {
             DbHelpUsEntities db = new DbHelpUsEntities();
 
-            List<Casos> casos = db.Casos.ToList();
+            List<Casos> casos;
+
+            var empresa = Convert.ToInt32(Session["empresa"]);
+
+            if (Convert.ToBoolean(Session["admin"]))
+            {
+                casos = db.Casos.ToList();
+            }
+            else
+            {
+                casos = db.Casos.Where(x=> x.IdEmpresa == empresa).ToList();
+            }
+            
 
             HomeViewModel model = new HomeViewModel()
             {
@@ -68,7 +80,7 @@ namespace HelpUs.Controllers
 
             DbHelpUsEntities db = new DbHelpUsEntities();
 
-            db.Casos.Add(new Casos { DescricaoCaso = model.DescricaoCaso, Quantidade = model.Quantidade, Valor = model.Valor, IdCategoria = model.IdCategoria, TituloCaso = model.TituloCaso, Ativo = true, IdEmpresa = 1, Avaliacao = false, QuantidadeTotal = 0, ValorTotal = 0 });
+            db.Casos.Add(new Casos { DescricaoCaso = model.DescricaoCaso, Quantidade = model.Quantidade, Valor = model.Valor, IdCategoria = model.IdCategoria, TituloCaso = model.TituloCaso, Ativo = true, IdEmpresa = Convert.ToInt32(Session["empresa"]) , Avaliacao = false, QuantidadeTotal = 0, ValorTotal = 0 });
             db.SaveChanges();
             return RedirectToAction(nameof(Index));
         }

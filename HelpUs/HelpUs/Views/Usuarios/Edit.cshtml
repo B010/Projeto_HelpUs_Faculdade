@@ -1,6 +1,5 @@
 ﻿@model HelpUs.Models.UsuariosViewModel
 
-
     <div class="row">
         @using (Html.BeginForm("Update", "Usuarios", FormMethod.Post, new { @class = "form-horizontal" }))
         {
@@ -33,6 +32,18 @@
                 <label class="col-md-2 control-label">Senha</label>
                 <div class="col-md-3">
                     <input type="text" id="Senha" name="Senha" value="@Model.Senha" class="form-control" required />
+                </div>
+                <span class="col-md-2"></span>
+                <div class="col-md-3">
+                    @if (Model.TipoUsuario)
+                    {
+                        <input class="form-check-input" value="true" type="checkbox" id="TipoUsuario" name="TipoUsuario" checked>
+                    }
+                    else
+                    {
+                        <input class="form-check-input" value="true" type="checkbox" id="TipoUsuario" name="TipoUsuario">
+                    }
+                    <label class="control-label">Administrador</label>
                 </div>
             </div>
             <div class="form-actions" style="">

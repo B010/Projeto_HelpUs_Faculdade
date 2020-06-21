@@ -73,7 +73,7 @@ namespace HelpUs.Controllers
                 Cnpj = model.Cnpj,
                 EmailEmpresa = model.EmailEmpresa,
                 NomeEmpresa = model.NomeEmpresa,
-                TelefoneEmpresa = model.TelefoneEmpresa,
+                TelefoneEmpresas = model.TelefoneEmpresas,
                 UfEmpresa = model.UfEmpresa,
                 UfEmpresaSelect = comboEstados.AsSelectListItem()
             };
@@ -81,11 +81,11 @@ namespace HelpUs.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(EmpresasViewModel model, string TelefoneEmpresa)
+        public ActionResult Create(EmpresasViewModel model)
         {
             DbHelpUsEntities db = new DbHelpUsEntities();
 
-            db.Empresas.Add(new Empresas { UfEmpresa = model.UfEmpresa, TelefoneEmpresa = model.TelefoneEmpresa, NomeEmpresa = model.NomeEmpresa, EmailEmpresa = model.EmailEmpresa, Cnpj = model.Cnpj, CEP = model.CEP, CidadeEmpresa = model.CidadeEmpresa, ativo = true, DataDisativacao = null });
+            db.Empresas.Add(new Empresas { UfEmpresa = model.UfEmpresa,TelefoneEmpresa = 1, TelefoneEmpresas = model.TelefoneEmpresas, NomeEmpresa = model.NomeEmpresa, EmailEmpresa = model.EmailEmpresa, Cnpj = model.Cnpj, CEP = model.CEP, CidadeEmpresa = model.CidadeEmpresa, ativo = true, DataDisativacao = null });
             db.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
@@ -142,7 +142,7 @@ namespace HelpUs.Controllers
                 Cnpj = empresas.Cnpj,
                 EmailEmpresa = empresas.EmailEmpresa,
                 NomeEmpresa = empresas.NomeEmpresa,
-                TelefoneEmpresa = empresas.TelefoneEmpresa,
+                TelefoneEmpresas = empresas.TelefoneEmpresas,
                 UfEmpresa = empresas.UfEmpresa,
                 UfEmpresaSelect = comboEstados.AsSelectListItem()
             };
@@ -151,7 +151,7 @@ namespace HelpUs.Controllers
         }
 
         [HttpPost]
-        public ActionResult Update(EmpresasViewModel model, string TelefoneEmpresa)
+        public ActionResult Update(EmpresasViewModel model)
         {
             DbHelpUsEntities db = new DbHelpUsEntities();
             var empresa = db.Empresas.First(a => a.IdEmpresa == model.IdEmpresa);
@@ -161,7 +161,7 @@ namespace HelpUs.Controllers
             empresa.Cnpj = model.Cnpj;
             empresa.EmailEmpresa = model.EmailEmpresa;
             empresa.NomeEmpresa = model.NomeEmpresa;
-            empresa.TelefoneEmpresa = model.TelefoneEmpresa;
+            empresa.TelefoneEmpresas = model.TelefoneEmpresas;
             empresa.UfEmpresa = model.UfEmpresa;
 
             db.SaveChanges();
