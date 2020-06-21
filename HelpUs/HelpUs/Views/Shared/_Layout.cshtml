@@ -34,9 +34,17 @@
             <!-- Itens do Menu Superior -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" @*data-toggle="dropdown"*@>@*Usuario*@ <b class="fa fa-angle-down"></b></a>
+                    @if (@HttpContext.Current.Session["logado"] != null)
+                    {
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">@HttpContext.Current.Session["logado"].ToString() <b class="fa fa-angle-down"></b></a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Index", "Login")">Logar </a>
+                    }
+
                     <ul class="dropdown-menu">
-                        <li><a href="#"><i class="fa fa-fw fa-power-off"></i> Logout</a></li>
+                        <li><a href="@Url.Action("Logout", "Login")"><i class="fa fa-fw fa-power-off"></i> Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -46,15 +54,22 @@
                     <li>
                         <a href="@Url.Action("Index", "Home")"><i class="fa fa-fw fa-home"></i> Home </a>
                     </li>
-                    <li>
-                        <a href="@Url.Action("Index", "Casos")"><i class="fa fa-fw fa-clipboard"></i> Controle de Casos</a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("Index", "Usuarios")"><i class="fa fa-fw fa-user"></i> Usuarios </a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("Index", "Empresas")"><i class="fa fa-fw fa-building"></i> Empresas </a>
-                    </li>
+                    @if (@HttpContext.Current.Session["logado"] != null)
+                    {
+                        <li>
+                            <a href="@Url.Action("Index", "Casos")"><i class="fa fa-fw fa-clipboard"></i> Controle de Casos</a>
+                        </li>
+                        if (Convert.ToBoolean(@HttpContext.Current.Session["admin"]))
+                        {
+                            <li>
+                                <a href="@Url.Action("Index", "Usuarios")"><i class="fa fa-fw fa-user"></i> Usuarios </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "Empresas")"><i class="fa fa-fw fa-building"></i> Empresas </a>
+                            </li>
+                        }
+                    }
+
                     <li>
                         <a href="@Url.Action("About", "Home")"><i class="fa fa-fw fa fa-question-circle"></i> Sobre </a>
                     </li>

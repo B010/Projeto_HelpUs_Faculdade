@@ -39,6 +39,7 @@ namespace HelpUs.Controllers
                 Usuario = model.Usuario,
                 Senha = model.Senha,
                 IdEmpresa = model.IdEmpresa,
+                TipoUsuario = model.TipoUsuario,
                 EmpresasSelect = comboEmpresas.AsSelectListItem()
             };
 
@@ -55,12 +56,12 @@ namespace HelpUs.Controllers
 
             DbHelpUsEntities db = new DbHelpUsEntities();
 
-            db.Login.Add(new Login { IdEmpresa = model.IdEmpresa, Usuario = model.Usuario, Senha = model.Senha, TipoUsuario = true });
+            db.Login.Add(new Login { IdEmpresa = model.IdEmpresa, Usuario = model.Usuario, Senha = model.Senha, TipoUsuario = model.TipoUsuario });
             db.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
 
-        public ActionResult Edit(int id, string error)
+        public ActionResult Edit(int id)
         {
             DbHelpUsEntities db = new DbHelpUsEntities();
             Login login = db.Login.Where(x => x.IdLogin == id).FirstOrDefault();
@@ -80,6 +81,7 @@ namespace HelpUs.Controllers
                 Usuario = login.Usuario,
                 Senha = login.Senha,
                 IdEmpresa = login.IdEmpresa,
+                TipoUsuario = login.TipoUsuario,
                 EmpresasSelect = comboEmpresas.AsSelectListItem()
             };
 
@@ -100,6 +102,7 @@ namespace HelpUs.Controllers
             login.Usuario = model.Usuario;
             login.Senha = model.Senha;
             login.IdEmpresa = model.IdEmpresa;
+            login.TipoUsuario = model.TipoUsuario;
 
             db.SaveChanges();
             return RedirectToAction(nameof(Index));

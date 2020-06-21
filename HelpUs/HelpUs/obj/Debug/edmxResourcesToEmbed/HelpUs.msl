@@ -32,6 +32,7 @@
     <EntitySetMapping Name="Empresas">
       <EntityTypeMapping TypeName="DbHelpUsModel.Empresas">
         <MappingFragment StoreEntitySet="Empresas">
+          <ScalarProperty Name="TelefoneEmpresas" ColumnName="TelefoneEmpresas" />
           <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
           <ScalarProperty Name="NomeEmpresa" ColumnName="NomeEmpresa" />
           <ScalarProperty Name="EmailEmpresa" ColumnName="EmailEmpresa" />

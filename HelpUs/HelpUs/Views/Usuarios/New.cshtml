@@ -24,6 +24,19 @@
             <div class="col-md-3">
                 <input type="text" id="Senha" name="Senha" value="@Model.Senha" class="form-control" required />
             </div>
+            <span class="col-md-2"></span>
+            <div class="col-md-3">
+                @if (Model.TipoUsuario)
+                {
+                    <input class="form-check-input" value="true" type="checkbox" id="TipoUsuario" name="TipoUsuario" checked>
+                }
+                else
+                {
+                    <input class="form-check-input" value="true" type="checkbox" id="TipoUsuario" name="TipoUsuario">
+                }
+                <label class="control-label">Administrador</label>
+            </div>
+            
         </div>
         <div class="form-actions" style="">
             <button id='btnSubmit' class='btn btn-success' type='submit'><i class='fa fa-save'></i> Update</button>

@@ -31,6 +31,7 @@ namespace HelpUs
         public string CidadeEmpresa { get; set; }
         public bool ativo { get; set; }
         public Nullable<System.DateTime> DataDisativacao { get; set; }
+        public string TelefoneEmpresas { get; set; }
     
         public virtual ICollection<Casos> Casos { get; set; }
         public virtual ICollection<Login> Login { get; set; }

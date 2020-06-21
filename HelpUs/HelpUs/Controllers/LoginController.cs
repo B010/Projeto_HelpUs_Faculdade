@@ -26,11 +26,18 @@ namespace HelpUs.Controllers
             var user = db.Login.Where(x => x.Usuario == model.Usuario && x.Senha == model.Senha).FirstOrDefault();
             if(user !=  null)
             {
-                Session["logado"] = user;
+                Session["logado"] = user.Usuario;
+                Session["admin"] = user.TipoUsuario;
+                Session["empresa"] = user.Empresas.IdEmpresa;
                 return RedirectToAction("Index", "Home");
             }
             else
                 return RedirectToAction("Index",new{ falha = true, usuario = model.Usuario });
+        }
+        public ActionResult Logout()
+        {
+            Session.RemoveAll();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

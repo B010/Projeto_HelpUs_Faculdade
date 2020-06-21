@@ -11,9 +11,9 @@
                         <th></th>
                         <th>Nome da Empresa</th>
                         <th>Email da Empresa</th>
+                        <th>Telefone da Empresa</th>
                         <th>CNPJ</th>
                         <th>CEP</th>
-                        <th>Estado</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,9 +23,9 @@
                             <td><a class="btn btn-primary" href="@Url.Action("Edit", new { id = el.IdEmpresa })"><i class="fa fa-pencil"></i></a> <a class="btn btn-danger delete" data-id="@el.IdEmpresa" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash"></i></a></td>
                             <td>@el.NomeEmpresa</td>
                             <td>@el.EmailEmpresa</td>
+                            <td>@el.TelefoneEmpresas</td>
                             <td>@el.Cnpj</td>
                             <td>@el.CEP</td>
-                            <td>@el.UfEmpresa</td>
                         </tr>
                     }
                 </tbody>

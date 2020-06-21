@@ -10,6 +10,7 @@ namespace HelpUs.Models
         public int? IdEmpresa { get; set; }
         public string Usuario { get; set; }
         public string Senha { get; set; }
+        public bool TipoUsuario { get; set; }
 
         public IEnumerable<SelectListItem> EmpresasSelect { get; set; } = new List<SelectListItem>();
 
