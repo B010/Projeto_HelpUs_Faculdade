@@ -11,6 +11,10 @@ namespace HelpUs.Controllers
     {
         public ActionResult Index()
         {
+            if (Session["logado"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DbHelpUsEntities db = new DbHelpUsEntities();
 
             List<Casos> casos;
@@ -37,6 +41,11 @@ namespace HelpUs.Controllers
 
         public ActionResult New(CasosViewModel model)
         {
+            if (Session["logado"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             DbHelpUsEntities db = new DbHelpUsEntities();
             List<Categorias> categorias = db.Categorias.ToList();
             IDictionary<int, string> combocategorias = new Dictionary<int, string>();
@@ -64,7 +73,12 @@ namespace HelpUs.Controllers
         [HttpPost]
         public ActionResult Create(CasosViewModel model, string valor)
         {
-            model.Valor = Convert.ToDecimal(valor);
+            if (Session["logado"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            model.Valor = Convert.ToDecimal(valor, new System.Globalization.CultureInfo("pt-BR"));
             if (string.IsNullOrEmpty(model.TituloCaso))
             {
                 return RedirectToAction(nameof(New), new { model });
@@ -87,6 +101,11 @@ namespace HelpUs.Controllers
 
         public ActionResult Edit(int id, string error)
         {
+            if (Session["logado"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             DbHelpUsEntities db = new DbHelpUsEntities();
             Casos casos = db.Casos.Where(x => x.IdCaso == id).FirstOrDefault();
 
@@ -118,7 +137,12 @@ namespace HelpUs.Controllers
         [HttpPost]
         public ActionResult Update(CasosViewModel model, string valor)
         {
-            model.Valor = Convert.ToDecimal(valor);
+            if (Session["logado"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            model.Valor = Convert.ToDecimal(valor, new System.Globalization.CultureInfo("pt-BR"));
             if (string.IsNullOrEmpty(model.TituloCaso))
             {                
                 return RedirectToAction(nameof(Edit), new { id = model.IdCaso });
@@ -147,6 +171,11 @@ namespace HelpUs.Controllers
 
         public ActionResult Delete(int id)
         {
+            if (Session["logado"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             DbHelpUsEntities db = new DbHelpUsEntities();
             db.Casos.Remove(db.Casos.Single(a => a.IdCaso == id));
             db.SaveChanges();

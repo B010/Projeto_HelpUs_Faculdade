@@ -37,7 +37,7 @@
     <Property Name="IdEmpresa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="NomeEmpresa" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="EmailEmpresa" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Cnpj" Type="String" MaxLength="17" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Cnpj" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
     <Property Name="CEP" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="TelefoneEmpresa" Type="Int32" Nullable="false" />
     <Property Name="UfEmpresa" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />

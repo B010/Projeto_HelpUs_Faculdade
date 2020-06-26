@@ -11,6 +11,11 @@ namespace HelpUs.Controllers
     {
         public ActionResult Index()
         {
+            if (!Convert.ToBoolean(Session["admin"]))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             DbHelpUsEntities db = new DbHelpUsEntities();
 
             List<Login> logins = db.Login.ToList();
@@ -25,6 +30,10 @@ namespace HelpUs.Controllers
 
         public ActionResult New(UsuariosViewModel model)
         {
+            if (!Convert.ToBoolean(Session["admin"]))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DbHelpUsEntities db = new DbHelpUsEntities();
             List<Empresas> empresas = db.Empresas.ToList();
             IDictionary<int, string> comboEmpresas = new Dictionary<int, string>();
@@ -49,6 +58,10 @@ namespace HelpUs.Controllers
         [HttpPost]
         public ActionResult Create(UsuariosViewModel model)
         {
+            if (!Convert.ToBoolean(Session["admin"]))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (model.IdEmpresa == 0)
             {
                 return RedirectToAction(nameof(New), new { model });
@@ -63,6 +76,10 @@ namespace HelpUs.Controllers
 
         public ActionResult Edit(int id)
         {
+            if (!Convert.ToBoolean(Session["admin"]))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DbHelpUsEntities db = new DbHelpUsEntities();
             Login login = db.Login.Where(x => x.IdLogin == id).FirstOrDefault();
 
@@ -91,6 +108,10 @@ namespace HelpUs.Controllers
         [HttpPost]
         public ActionResult Update(UsuariosViewModel model)
         {
+            if (!Convert.ToBoolean(Session["admin"]))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (model.IdEmpresa == 0)
             {
                 return RedirectToAction(nameof(New), new { model });
@@ -110,6 +131,10 @@ namespace HelpUs.Controllers
 
         public ActionResult Delete(int id)
         {
+            if (!Convert.ToBoolean(Session["admin"]))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DbHelpUsEntities db = new DbHelpUsEntities();
             db.Login.Remove(db.Login.Single(a => a.IdLogin == id));
             db.SaveChanges();
