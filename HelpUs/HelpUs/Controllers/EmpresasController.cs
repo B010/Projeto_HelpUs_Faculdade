@@ -11,6 +11,10 @@ namespace HelpUs.Controllers
     {
         public ActionResult Index()
         {
+            if (!Convert.ToBoolean(Session["admin"]))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DbHelpUsEntities db = new DbHelpUsEntities();
 
             List<Empresas> empresas = db.Empresas.Where(x => x.ativo == true).ToList();
@@ -58,6 +62,11 @@ namespace HelpUs.Controllers
             };
             #endregion
 
+            if (!Convert.ToBoolean(Session["admin"]))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             IDictionary<string, string> comboEstados = new Dictionary<string, string>();
 
             foreach (var est in estados)
@@ -83,6 +92,11 @@ namespace HelpUs.Controllers
         [HttpPost]
         public ActionResult Create(EmpresasViewModel model)
         {
+            if (!Convert.ToBoolean(Session["admin"]))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             DbHelpUsEntities db = new DbHelpUsEntities();
 
             db.Empresas.Add(new Empresas { UfEmpresa = model.UfEmpresa,TelefoneEmpresa = 1, TelefoneEmpresas = model.TelefoneEmpresas, NomeEmpresa = model.NomeEmpresa, EmailEmpresa = model.EmailEmpresa, Cnpj = model.Cnpj, CEP = model.CEP, CidadeEmpresa = model.CidadeEmpresa, ativo = true, DataDisativacao = null });
@@ -92,6 +106,11 @@ namespace HelpUs.Controllers
 
         public ActionResult Edit(int id, string error)
         {
+            if (!Convert.ToBoolean(Session["admin"]))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             #region Estados
             var estados = new string[,]
             {
@@ -153,6 +172,11 @@ namespace HelpUs.Controllers
         [HttpPost]
         public ActionResult Update(EmpresasViewModel model)
         {
+            if (!Convert.ToBoolean(Session["admin"]))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             DbHelpUsEntities db = new DbHelpUsEntities();
             var empresa = db.Empresas.First(a => a.IdEmpresa == model.IdEmpresa);
 
@@ -170,6 +194,11 @@ namespace HelpUs.Controllers
 
         public ActionResult Delete(int id)
         {
+            if (!Convert.ToBoolean(Session["admin"]))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             DbHelpUsEntities db = new DbHelpUsEntities();
             var empresa = db.Empresas.First(a => a.IdEmpresa == id);
 

@@ -40,6 +40,7 @@
     <Property Name="CidadeEmpresa" Type="varchar" MaxLength="25" Nullable="false" />
     <Property Name="ativo" Type="bit" Nullable="false" />
     <Property Name="DataDisativacao" Type="date" />
+    <Property Name="TelefoneEmpresas" Type="varchar" MaxLength="15" />
   </EntityType>
   <EntityType Name="Login">
     <Key>
